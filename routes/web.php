@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,3 +10,4 @@ Route::get('/', function () {
 Route::get('/mike', function(){
   return view('pages.modalTemp');
 });
+Route::get('/product-form', [ProductController::class, 'productForm'])->name('product-form');
