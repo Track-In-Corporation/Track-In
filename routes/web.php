@@ -9,3 +9,6 @@ Route::get('/', function () {
 
 // Route::get('/add-form/{id}', [ProductController::class, 'addForm'])->name('add-form');
 Route::get('/add-form', [ProductController::class, 'addForm'])->name('add-form');
+Route::get('/mike', function(){
+  return view('pages.modalTemp');
+});

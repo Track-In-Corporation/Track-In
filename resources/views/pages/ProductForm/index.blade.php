@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends("layout.index")
 
 @section('content')
     <div class="flex-col">
