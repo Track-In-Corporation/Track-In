@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
 
-  @vite('resources/css/app.css')
-</head>
-<body>
-  @include('layout.navbar')
-  @yield('content')
-  @include('layout.footer')
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap" rel="stylesheet">
+        @vite(["resources/css/app.css", "resources/js/app.js"])
+      </head>
+      
+      <body>
+        @include("layout.navbar")
+        @yield("content")
+        @include("layout.footer")
+        @stack('scripts')
+    </body>
+
 </html>
