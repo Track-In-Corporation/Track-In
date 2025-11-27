@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-      Schema::create('products', function (Blueprint $table) {
-          $table->string('code')->primary();
-          $table->integer('price');
-          $table->integer('quantity');
-          $table->string('brand');
-          $table->string('description');
-          $table->integer('size');
-          $table->string('sch');
-          $table->string('hs_code');
-          $table->string('country_origin');
-          $table->enum('material_family', ['']);
-          $table->boolean('sni_required')->default(false);
-          $table->enum('size_category', ['']);
-          $table->boolean('lartas_required')->default(false);
-          $table->enum('type', ['']);
-      });
+        Schema::create('products', function (Blueprint $table) {
+            $table->string('code')->primary();
+            $table->integer('price');
+            $table->integer('quantity');
+            $table->string('brand');
+            $table->string('description');
+            $table->integer('size');
+            $table->string('sch');
+            $table->string('hs_code');
+            $table->string('country_origin');
+            $table->enum('material_family', ['']);
+            $table->boolean('sni_required')->default(false);
+            $table->enum('size_category', ['']);
+            $table->boolean('lartas_required')->default(false);
+            $table->enum('type', ['Materials', 'Chemicals', 'Raw Parts', 'Consumables']);
+        });
     }
 
     /**
