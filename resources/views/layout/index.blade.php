@@ -13,10 +13,14 @@
     </head>
 
     <body>
-        @include("layout.navbar")
-        @yield("content")
-        @include("layout.footer")
-
+        <main class="bg-background grid grid-cols-[15rem_1fr] min-h-dvh">
+            @include("layout.navbar")
+            <section class="bg-background p-2">
+                <div class="bg-white h-full w-full rounded-xl">
+                    @yield("content")
+                </div>
+            </section>
+        </main>
     </body>
 
 </html>
