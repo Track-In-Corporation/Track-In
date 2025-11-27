@@ -35,3 +35,9 @@
 @custom-variant md (@media (max-width: 767px));
 @custom-variant sm (@media (max-width: 639px));
 @custom-variant xs (@media (max-width: 420px));
+
+.fji {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -8,6 +8,9 @@ Route::get('/', function () {
 });
 
 Route::get('/mike', function(){
-  return view('pages.modalTemp');
+  return view('components.modalTemp');
+});
+Route::get('/sideModal', function(){
+  return view('components.sideModal');
 });
 Route::get('/product-form', [ProductController::class, 'productForm'])->name('product-form');
