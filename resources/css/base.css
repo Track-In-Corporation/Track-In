@@ -1,0 +1,27 @@
+@theme inline {
+    --color-primary: #0b0b0b;
+    --color-secondary: #909fbd;
+    --color-tertiary: #c5cede;
+    --color-input-background: #f9f9fb;
+    --color-background: #f3f3f5;
+    --color-border: #dfe6f5;
+    --color-accent: #3034fe;
+    --color-red: #dd4242;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+.animate-cta {
+    @apply transition-all duration-75 cursor-pointer;
+}
+
+.shadow-soft {
+    box-shadow: 0 0 3px 1px #00000006;
+}
