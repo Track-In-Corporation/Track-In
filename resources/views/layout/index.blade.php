@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
 
-        <link rel="stylesheet" href="{{ asset("bootstrap5.3/css/bootstrap.min.css") }}">
-        <link rel="stylesheet" href="../../css/index.css">
+        {{-- <link rel="stylesheet" href="{{ asset("bootstrap5.3/css/bootstrap.min.css") }}">
+        <link rel="stylesheet" href="../../css/index.css"> --}}
         @vite(["resources/css/app.css", "resources/js/app.js"])
         <script defer src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
     </head>

@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/product-form', [ProductController::class, 'productForm'])->name('product-form');
+// Route::get('/add-form/{id}', [ProductController::class, 'addForm'])->name('add-form');
+Route::get('/add-form', [ProductController::class, 'addForm'])->name('add-form');
