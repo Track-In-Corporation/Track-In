@@ -11,3 +11,21 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
+
+iconify-icon {
+    display: inline-block;
+    min-width: 1em; /* Matches text size */
+    min-height: 1em;
+}
+
+/* 2. Once the icon content is loaded (SVG is injected), remove background */
+iconify-icon svg {
+    /* Iconify injects an <svg> inside. When that exists, these styles apply */
+    display: block;
+}
+
+@layer components {
+    .selected-type {
+        @apply border-accent outline outline-1 outline-accent;
+    }
+}

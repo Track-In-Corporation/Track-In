@@ -13,5 +13,10 @@ Route::get('/mike', function(){
   return view('components.modalTemp');
 });
 Route::get('/sideModal', function(){
-  return view('components.sideModal');
+  return view('components.transactionModal');
 });
+Route::get('/alamak', function(){
+  return view('components.inventoryModal');
+});
+Route::get('/product-form', [ProductController::class, 'productForm'])->name('product-form');
+Route::get('/inventory', [ProductController::class, 'inventory'])->name('inventory');

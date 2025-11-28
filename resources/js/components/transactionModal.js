@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const sideModal = document.querySelector(".sideModalTransaction");
-    const sideModalButton = document.querySelector(".sideModalButton");
+    const sideModalButton = document.querySelector(
+        ".sideModalTransactionButton"
+    );
     const sideContent = document.querySelector(".sideModalTransactionContent");
+    const backButton = document.querySelector(".backButton");
 
     const closeSideModal = () => {
         sideModal.classList.add("opacity-0", "pointer-events-none");
@@ -33,5 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // console.log("ahhh");
+    backButton.addEventListener("click", function (e) {
+        closeSideModal();
+    });
 });

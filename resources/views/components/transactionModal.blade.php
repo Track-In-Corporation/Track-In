@@ -3,22 +3,22 @@
 @section('content')
   <div class="min-h-screen flex justify-center items-center">
       <img src="{{asset('images/juun21.jpg')}}" alt="">
-      <button class="sideModalButton">Open Modal</button>
+      <button class="sideModalTransactionButton">Open Modal</button>
 
 
       <!-- Side Modal -->
-      <div data-sideModalTransaction-state='open' class="fixed inset-0 h-screen bg-black/40 sideModalTransaction opacity-100 transition-opacity duration-200 pointer-events-none">
+      <div data-sideModalTransaction-state='open' class="fixed inset-0 h-screen bg-black/40 sideModalTransaction opacity-0 transition-opacity duration-200 pointer-events-none">
         <!-- Content -->
          <!-- Change This! -->
-         <div class=" absolute sideModalTransactionContent bg-border p-3 my-4 right-4  max-w-[800px] h-full max-h-[97vh] rounded-xl max-md:min-w-[250px] z-10  transform  transition-transform duration-200 ">
+         <div class=" absolute sideModalTransactionContent bg-background p-3 my-4 right-4  max-w-[800px] h-full max-h-[97vh] rounded-xl max-md:min-w-[250px] z-10  transform  transition-transform duration-200 max-md:max-w-[400px] max-md:right-0 translate-x-full ">
             <div class="bg-white rounded-xl h-full">
 
-            <div class="animate-cta p-3 flex justify-start items-center gap-2">
+            <div class="animate-cta p-3 flex justify-start items-center gap-2 backButton">
               <iconify-icon icon="ep:arrow-left" ></iconify-icon>
               <p class="">Detil Transaksi</p>
             </div>
 
-            <div class="bg-gray-300 w-full h-px"></div>
+            <div class="bg-gray-300 w-full h-px opacity-50"></div>
             
             <div class="p-5">
               <div class="flex justify-between items-center">
@@ -27,62 +27,63 @@
                   <p class="px-3 py-1 bg-background rounded-full">Pending</p>
                 </div>
 
-                <button class="shadow-soft px-4 bg-accent py-2 rounded-lg fji gap-2 animate-cta">
-                  <iconify-icon icon="mingcute:truck-line" class="text-white text-xl " ></iconify-icon>
-                  <p class="text-white">Buat Surat Jalan</p>
+                <button class="shadow-soft px-4 bg-accent py-2 max-md:gap-1 max-md:px-2 max-md:py-1 rounded-lg fji gap-2 animate-cta">
+                  <iconify-icon icon="mingcute:truck-line" class="text-white text-xl max-md:text-base" ></iconify-icon>
+                  <p class="text-white max-md:text-[10px]">Buat Surat Jalan</p>
                 </button>
               </div>
 
-              <div class="bg-gray-300 w-full h-px my-3"></div>
+              <div class="bg-gray-300 w-full h-px my-3 opacity-50"></div>
 
               <!-- Detail Transaksi -->
-              <div class="grid grid-cols-3 gap-3">
+              <div class="grid grid-cols-3 max-md:grid-cols-2 gap-3 ">
                 <!-- No Transaksi -->
                 <div class="col-span-1 flex justify-start items-center gap-1">
                   <iconify-icon icon="mingcute:paper-line" class="text-secondary text-xl" ></iconify-icon>
                   <p class="text-secondary">No. Transaksi</p>
                 </div>
-                <div class="col-span-2 py-2 px-4 rounded-full bg-border w-max text-secondary">KOMARISAMA</div>
+                <div class="col-span-2 max-md:col-span-1 py-2 px-4 rounded-full bg-border w-max text-secondary">KOMARISAMA</div>
 
                 <!-- Tanggal Dibuat -->
                  <div class="col-span-1 flex justify-start items-center gap-1 my-2">
                   <iconify-icon icon="material-symbols:date-range" class="text-secondary text-xl" ></iconify-icon>
                   <p class="text-secondary">Tanggal Dibuat</p>
                 </div>
-                <div class="col-span-2 my-2">KOMARISAMA</div>
+                <div class="col-span-2 max-md:col-span-1 my-2">KOMARISAMA</div>
 
                 <!-- Nama -->
                  <div class="col-span-1 flex justify-start items-center gap-1 my-2">
                   <iconify-icon icon="mdi:user-outline" class="text-secondary text-xl" ></iconify-icon>
                   <p class="text-secondary">Nama</p>
                 </div>
-                <div class="col-span-2 my-2">KOMARISAMA</div>
+                <div class="col-span-2 max-md:col-span-1 my-2">KOMARISAMA</div>
 
                 <!-- Alamat  -->
                  <div class="col-span-1 flex justify-start items-center gap-1 my-2">
                   <iconify-icon icon="tabler:address-book" class="text-secondary text-xl" ></iconify-icon>
                   <p class="text-secondary">Alamat</p>
                 </div>
-                <div class="col-span-2 my-2">KOMARISAMA</div>
+                <div class="col-span-2 max-md:col-span-1 my-2">KOMARISAMA</div>
               </div>
 
-              <div class="bg-gray-300 w-full h-px my-3"></div>
+              <div class="bg-gray-300 w-full h-px my-3 opacity-50"></div>
 
               <!-- Detil Produk -->
+              
 
               <!-- Rincian Harga -->
                <div class="rounded-xl border-t-10 border-t-accent border-border p-6 border">
-                  <div class="grid grid-cols-2 justify-between">
+                  <div class="grid grid-cols-2 justify-between max-md:grid-cols-1 max-md:gap-2">
                     <div >
-                      <div class="flex justify-start items-center gap-1">
+                      <div class="flex justify-start items-center max-md:justify-center gap-1">
                         <iconify-icon icon="humbleicons:money" class="text-2xl font-bold"></iconify-icon>
                         <p class="font-bold text-xl">Rincian Harga</p>
                       </div>
-                      <p class="text-secondary">Perhitungan dari rincian barang yang dipilih untuk transaksi.</p>
+                      <p class="text-secondary max-md:text-center">Perhitungan dari rincian barang yang dipilih untuk transaksi.</p>
                     </div>
 
-                    <div class="flex justify-between items-end w-full flex-col content-end">
-                      <div class="w-[300px] ">
+                    <div class="flex justify-between items-end w-full flex-col max-md:mt-2 content-end">
+                      <div class="w-[300px] max-md:w-full">
                         <!-- Subtotal -->
                         <div class="flex justify-between items-center w-full">
                           <p class="text-lg text-secondary">Subtotal</p>
@@ -112,9 +113,6 @@
                           <p class=" text-black font-bold text-xl">Total</p>
                           <p class="text-xl">Rp. 16.000.000</p>  
                         </div>
-
-                        
-                        
                       </div>
                     </div>
                   </div>
@@ -127,3 +125,4 @@
       </div>
   </div>
 @endsection
+

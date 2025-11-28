@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('delivery_order_bills', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->string('delivery_address');
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

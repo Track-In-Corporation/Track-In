@@ -14,4 +14,9 @@ class ProductController extends Controller
         // return view('pages.ProductForm.index', compact('types', 'product'));
         return view('pages.ProductForm.index', compact('types'));
     }
+
+    public function inventory() {
+        $products = Product::paginate(20);
+        return view("pages.Inventory.index", compact("products"));
+    }
 }
