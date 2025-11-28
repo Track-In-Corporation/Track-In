@@ -4,7 +4,7 @@
     <div class="flex-col">
         @include('pages.ProductForm.Header')
         <div class="px-5 py-3">
-            @include('pages.ProductForm.TypeSelector')
+            @include('pages.ProductForm.Identity')
         </div>
     </div>
 @endsection

@@ -1,14 +1,18 @@
-import { fetchInventoryDetails } from "../pages/inventory";
-
-const subscriberList = {
-    inventory: [fetchInventoryDetails],
-};
+import { QueryClient } from "../queryClient";
 
 window.addEventListener("click", (e) => {
     const windowContainer = document.querySelector("[data-window-component]");
     const trigger = e.target.closest("[data-window-trigger]");
+    const close = e.target.closest("[data-window-close]");
 
     if (!windowContainer) return;
+
+    // Handle manual close
+    if (close) {
+        windowContainer.dataset.windowComponentState = "closed";
+        windowContainer.dataset.content = "";
+        return;
+    }
 
     // Handle Trigger clicks
     if (trigger) {
@@ -19,9 +23,7 @@ window.addEventListener("click", (e) => {
         // publish data to subcribers
         // publisher name is stored in window component
         const publisher = windowContainer.dataset.windowComponent;
-        subscriberList[publisher]?.forEach((subscriber) => {
-            subscriber();
-        });
+        QueryClient.publish(publisher);
         return;
     }
 

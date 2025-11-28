@@ -1,16 +1,11 @@
 @php
     $inventoryTypes = [
-        'Materials'    => 'icon-park-outline:ad-product',
-        'Chemicals'    => 'solar:flame-bold',
-        'Raw Parts'    => 'ri:wrench-line',
-        'Consumables'  => 'mdi:package-variant-closed',
+        'materials'    => 'icon-park-outline:ad-product',
+        'chemicals'    => 'solar:flame-bold',
+        'raw-parts'    => 'ri:wrench-line',
+        'consumables'  => 'mingcute:paper-line',
     ];
 
-    $types = $types->isNotEmpty()
-        ? $types
-        : collect(array_keys($inventoryTypes));
-
-    // $selected = old('type', $product->type ?? null);
     $selected = old('type');
 @endphp
 
@@ -18,7 +13,7 @@
     @foreach ($types as $type)
         @php
             $isSelected = $selected === $type;
-            $icon = $inventoryTypes[$type] ?? 'mdi:help-circle-outline';
+            $icon = $inventoryTypes[$type];
         @endphp
 
         <li
@@ -26,8 +21,14 @@
                    {{ $isSelected ? 'border-accent outline-[1px] outline-accent' : 'hover:border-accent/50' }}"
             onclick="
                 document.getElementById('type-input').value = '{{ $type }}';
-                document.querySelectorAll('.type-option').forEach(el => el.classList.remove('selected-type'));
-                this.classList.add('selected-type');
+
+                document.querySelectorAll('.type-option').forEach(el => {
+                    el.classList.remove('border-accent', 'outline-accent');
+                    el.querySelector('.selected-badge').classList.add('opacity-0');
+                });
+
+                this.classList.add('border-accent', 'outline-accent');
+                this.querySelector('.selected-badge').classList.remove('opacity-0');
             "
         >
             <div class="p-1.5 rounded-full bg-accent/5 w-10 h-10 flex items-center justify-center">
@@ -36,10 +37,10 @@
 
             <p class="font-medium text-sm">{{ $type }}</p>
 
-            <p class="text-white bg-accent rounded-full px-2 text-xs ml-auto transition
-                {{ $isSelected ? 'opacity-100' : 'opacity-0' }}">
+            <p class="selected-badge text-white bg-accent rounded-full px-2 text-xs ml-auto transition {{ $isSelected ? 'opacity-100' : 'opacity-0' }}">
                 Terpilih
             </p>
+
         </li>
     @endforeach
 </ul>

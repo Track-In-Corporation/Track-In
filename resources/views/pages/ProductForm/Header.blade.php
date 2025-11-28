@@ -1,6 +1,6 @@
 <div class="flex gap-4 items-center border-b p-5">
-    <div class="rounded-full bg-background p-3 w-10 h-10 flex items-center justify-center">
-        <iconify-icon icon="tabler:chevron-left" width="20" height="20"></iconify-icon>
+    <div class="rounded-full bg-background w-10 h-10 flex items-center justify-center">
+        <iconify-icon icon="tabler:chevron-left" width="20"></iconify-icon>
     </div>
 
     <div>

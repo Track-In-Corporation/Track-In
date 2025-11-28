@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Traits\APIResponse;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use APIResponse;
+
     private $STOCK_LOW = 0;
     private $STOCK_MEDIUM = 5;
     private $STOCK_READY = 20;
 
     public function addForm(){
         $types = Product::pluck('type')->unique()->values();
-        // $product = Product::findOrFail($id);
-
-        // return view('pages.ProductForm.index', compact('types', 'product'));
         return view('pages.ProductForm.index', compact('types'));
     }
 
@@ -38,5 +38,15 @@ class ProductController extends Controller
         ->paginate(20);
 
       return view("pages.inventory.index", compact("products"));
+    }
+
+    public function getProduct($code) {
+        $product = Product::find($code);
+        if($product == null) {
+            return $this->error("The product with the code $code, does not exist", 404);
+        }
+
+        $htmlString = view("pages.inventory.details.content", compact("product"))->render();
+        return $this->success($htmlString, "Successfully retrieved product");
     }
 }

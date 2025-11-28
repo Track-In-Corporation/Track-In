@@ -6,7 +6,7 @@
                 <iconify-icon icon="icomoon-free:price-tag" class="text-secondary text-lg"></iconify-icon>
                 <div class="text-sm text-secondary mb-0.5">Harga Barang</div>
                 <div></div>
-                <div>Rp. 50.000</div>
+                <div>@formatToRupiah($product->price)</div>
             </div>
         </div>
         <div class="bg-border h-full w-px"></div>
@@ -24,7 +24,7 @@
                 <iconify-icon icon="charm:container" class="text-secondary text-xl"></iconify-icon>
                 <div class="text-sm text-secondary mb-0.5">Stock Barang</div>
                 <div></div>
-                <div>500</div>
+                <div>@formatNumber($product->quantity)</div>
             </div>
         </div>
     </div>

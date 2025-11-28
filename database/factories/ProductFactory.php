@@ -22,14 +22,14 @@ class ProductFactory extends Factory
             "quantity" => fake()->numberBetween(0, 25),
             "brand" => fake()->text(8),
             "description" => fake()->paragraph(),
-            "size" => fake()->randomElement(["5.5mm", "2mm", "10mm", "Medium", "9mm", "2.5mm"]),
+            "size" => fake()->randomFloat(2, 1, 50),
             "sch" => fake()->randomElement(["10SCH", "20SCH", "30SCH", "40SCH", "50SCH"]),
             "hs_code" => fake()->numberBetween(0, 50000),
             "country_origin" => fake()->randomElement(["Korea", "Indonesia", "USA", "China", "Japan", "Australia", "Germany"]),
             "material_family" => fake()->randomElement(["Carbon Steel", "Duplex Pipe", "Metal Sheets"]),
             "sni_required" => fake()->boolean(),
             "lartas_required" => fake()->boolean(),
-            "size_category" => fake()->randomElement(["Large", "Medium", "Small"]),
+            "unit" => fake()->randomElement(["mm", "cm", "m", "dm"]),
             "type" => fake()->randomElement(['materials', 'chemicals', 'raw-parts', 'consumables'])
         ];
     }

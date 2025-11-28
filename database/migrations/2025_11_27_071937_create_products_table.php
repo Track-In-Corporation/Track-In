@@ -14,19 +14,19 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->string('code')->primary();
             $table->timestamps();
-            $table->integer('price'); // Harga satuan
-            $table->integer('quantity'); // stock
-            $table->string('brand'); // merk
-            $table->text('description'); // deskripsi
-            $table->string('size'); // ukuran
-            $table->string('sch'); // sch
-            $table->string('hs_code'); // kode hs
-            $table->string('country_origin'); // origin
-            $table->string('material_family'); // material
-            $table->boolean('sni_required')->default(false); // butuh sni
-            $table->string('size_category'); // kategori ukuran
-            $table->boolean('lartas_required')->default(false); // butuh lartas
-            $table->enum('type', ['materials', 'chemicals', 'raw-parts', 'consumables']); //type
+            $table->integer('price');
+            $table->integer('quantity');
+            $table->string('brand');
+            $table->text('description');
+            $table->float('size');
+            $table->string('sch');
+            $table->string('hs_code');
+            $table->string('country_origin');
+            $table->string('material_family');
+            $table->boolean('sni_required')->default(false);
+            $table->string('unit');
+            $table->boolean('lartas_required')->default(false);
+            $table->enum('type', ['materials', 'chemicals', 'raw-parts', 'consumables']);
         });
     }
 
