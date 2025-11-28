@@ -22,7 +22,7 @@
         ],
     ];
 @endphp
-<div class="">
+<div class=" pt-6 px-8 pb-4">
     <h1 class="text-[1.6rem] tracking-tight mb-6">Inventory</h1>
     <div class="flex gap-4 items-center border-b">
         @foreach ($tabs as $tab)

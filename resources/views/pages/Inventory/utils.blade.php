@@ -1,4 +1,4 @@
-<div class="mt-3 flex gap-3 justify-between">
+<div class="flex gap-3 justify-between px-8">
     <div class="flex gap-6 ">
         <div class="relative">
             <iconify-icon class="absolute left-3 text-lg text-secondary top-1/2 -translate-y-1/2 "
@@ -8,18 +8,7 @@
                 placeholder="Search...">
         </div>
         <div class="w-px h-full bg-border"></div>
-        <div class="" data-component-dropdown>
-            <div
-                class="grid grid-cols-[auto_1fr_auto] w-60 py-1.5 px-3 bg-input-background border rounded-md shadow-soft gap-2">
-                <iconify-icon class="text-lg" icon="mynaui:filter"></iconify-icon>
-                <div class="flex gap-1">
-                    <iconify-icon class="text-lg text-red" icon="material-symbols:warning-rounded"></iconify-icon>
-                    <p class="text-sm">Stock Low</p>
-                </div>
-                <iconify-icon class="rotate-180 text-lg" icon="tabler:chevron-up"></iconify-icon>
-            </div>
-            <ul></ul>
-        </div>
+        @include("pages.Inventory.filter")
     </div>
     <button
         class="flex items-center gap-2 bg-accent text-white px-5 py-1.5 rounded-md shadow-[0_0_10px_0_rgba(118,120,255,0.21)]">

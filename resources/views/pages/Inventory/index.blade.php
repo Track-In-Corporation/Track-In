@@ -1,8 +1,9 @@
 @extends("layout.index")
 
 @section("content")
-    <section class="h-full p-6 px-8">
+    <section class="h-full flex flex-col">
         @include("pages.Inventory.header")
         @include("pages.Inventory.utils")
+        @include("pages.Inventory.table")
     </section>
 @endsection
