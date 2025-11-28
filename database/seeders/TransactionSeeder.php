@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\TransactionItem;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,16 +24,31 @@ class TransactionSeeder extends Seeder
             $transaction->save();
 
             // 2. Assign random product (max 5 items)
-            $itemAmount = rand(1, 5);
+            $MAX = 5;
+            $MIN = 1;
+            $itemAmount = rand($MIN, $MAX);
             for($i = 0; $i < $itemAmount; $i++) {
 
-                // Filter product that are out of stock
+                // Only when products that are in stock
                 $availableProducts = $products->where("quantity", ">", 0);
                 if($availableProducts->isEmpty()) {
                     break;
                 }
 
+                // Get random buyable amount, can't get pass max
+                $product = $availableProducts->random();
+                $maxBuyable = max($MAX, $product->quantity);
+                $buyQuantity = rand($MIN, $maxBuyable);
 
+                TransactionItem::create([
+                    "transaction_id" => $transaction->id,
+                    "product_code" => $product->code,
+                    "quantity" => $buyQuantity,
+                    "price" => $product->price
+                ]);
+
+                // Update in memory product quantity
+                $product->quantity = $product->quantity - $buyQuantity;
             }
         });
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->string('brand');
-            $table->string('description');
+            $table->text('description');
             $table->string('size');
             $table->string('sch');
             $table->string('hs_code');

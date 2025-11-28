@@ -15,6 +15,6 @@ class TransactionItem extends Model
     }
 
     public function product(){
-      return $this->belongsTo(Product::class, 'product_code', 'id');
+      return $this->belongsTo(Product::class, 'product_code', 'code');
     }
 }

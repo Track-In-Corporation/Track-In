@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer("quantity");
-            $table->foreignId("product_code")->constrained()->onDelete("cascade");
+            $table->integer("price");
+            $table->string("product_code");
+            $table->foreign("product_code")->references("code")->on("products")->onDelete("cascade");
             $table->foreignId("transaction_id")->constrained()->onDelete("cascade");
         });
     }
