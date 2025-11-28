@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->string('code')->primary();
+            $table->timestamps();
             $table->integer('price');
             $table->integer('quantity');
             $table->string('brand');
@@ -21,9 +22,9 @@ return new class extends Migration
             $table->string('sch');
             $table->string('hs_code');
             $table->string('country_origin');
-            $table->enum('material_family', ['']);
+            $table->string('material_family');
             $table->boolean('sni_required')->default(false);
-            $table->enum('size_category', ['']);
+            $table->string('size_category');
             $table->boolean('lartas_required')->default(false);
             $table->enum('type', ['Materials', 'Chemicals', 'Raw Parts', 'Consumables']);
         });

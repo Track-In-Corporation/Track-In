@@ -1,4 +1,4 @@
-<div class="relative group" data-dropdown-component>
+<div class="relative z-10 group" data-dropdown-component>
     <div class="grid grid-cols-[auto_1fr_auto] w-60 py-1.5 px-3 bg-input-background border rounded-md shadow-soft gap-2 animate-cta hover:opacity-50"
         data-dropdown-trigger>
         <iconify-icon class="text-lg" icon="mynaui:filter"></iconify-icon>

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::directive("formatToRupiah", function($price) {
+          return "{{ 'Rp ' . number_format($price, '0', ',', '.'); }}";
+        });
+
+        Blade::directive("formatNumber", function($num) {
+          return "{{ number_format($num, '0', ',', '.'); }}";
+        });
     }
 }
