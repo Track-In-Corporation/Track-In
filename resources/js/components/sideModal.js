@@ -1,27 +1,37 @@
-const modal = document.querySelector(".modal");
-const modalButton = document.querySelector(".modalButton");
-const content = document.querySelector(".content");
-const cancelButton = document.querySelector(".cancelButton");
-const successButton = document.querySelector(".successButton");
+document.addEventListener("DOMContentLoaded", () => {
+    const sideModal = document.querySelector(".sideModalTransaction");
+    const sideModalButton = document.querySelector(".sideModalButton");
+    const sideContent = document.querySelector(".sideModalTransactionContent");
 
-const closeModal = () => {
-    modal.classList.add("hidden");
-    modal.classList.remove("flex");
-};
+    const closeSideModal = () => {
+        sideModal.classList.add("opacity-0", "pointer-events-none");
+        sideContent.classList.add("translate-x-full");
+    };
 
-modalButton.addEventListener("click", function () {});
+    const openSideModal = () => {
+        sideModal.classList.remove("opacity-0", "pointer-events-none");
+        sideContent.classList.remove("translate-x-full");
+    };
 
-cancelButton.addEventListener("click", closeModal);
-successButton.addEventListener("click", function () {
-    closeModal();
+    sideModalButton.addEventListener("click", function () {
+        console.log("ahh");
+        sideModal.classList.remove("opacity-0", "pointer-events-none");
+        sideContent.classList.remove("translate-x-full");
+    });
 
-    // More Logic Here
+    // cancelButton.addEventListener("click", closeSideModal);
+    // successButton.addEventListener("click", function () {
+    //     closeSideModal();
+
+    //     // More Logic Here
+    // });
+
+    sideModal.addEventListener("click", function (e) {
+        console.log("ahahh");
+        if (e.target === sideModal) {
+            closeSideModal();
+        }
+    });
+
+    // console.log("ahhh");
 });
-
-modal.addEventListener("click", function (e) {
-    if (e.target === modal) {
-        closeModal();
-    }
-});
-
-// console.log("ahhh");
