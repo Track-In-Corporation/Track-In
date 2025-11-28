@@ -17,7 +17,7 @@
     <div class="shadow-soft">
         <input
             {{ $attributes->merge(['class' =>
-                "border border-border bg-highlight rounded-sm w-full px-5 py-3
+                "border border-border bg-highlight rounded-sm w-full px-5 py-4
                 text-primary disabled:text-slate-500 transition duration-75
                 placeholder:text-paragraph text-sm focus:ring-accent focus:ring-2
                 outline-none disabled:cursor-not-allowed placeholder:font-normal

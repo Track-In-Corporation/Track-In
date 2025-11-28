@@ -10,7 +10,7 @@
         <x-input
             label="Deskripsi Produk"
             placeholder="Flange 8'' #150 Blind.."
-            class="mt-2"
+            class="mt-1"
 
             name="description"
             :error="$errors->first('description')"
