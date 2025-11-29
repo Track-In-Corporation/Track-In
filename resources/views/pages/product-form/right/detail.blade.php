@@ -17,7 +17,8 @@
         @include('pages.product-form.right.detail-input')
     </div>
 
-    <button type="submit" class="flex items-center justify-center text-center gap-2 bg-accent text-white px-5 py-4 rounded-md shadow-[0_0_10px_0_rgba(118,120,255,0.21)] cursor-pointer">
+    <button type="submit"
+        class="flex items-center justify-center text-center gap-2 bg-accent text-white px-5 py-4 rounded-md shadow-[0_0_10px_0_rgba(118,120,255,0.21)] cursor-pointer">
         <iconify-icon class="text-xl" icon="ic:round-plus"></iconify-icon>
         <p class="text-sm">Tambahkan Barang</p>
     </button>

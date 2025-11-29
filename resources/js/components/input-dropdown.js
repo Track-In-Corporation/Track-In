@@ -8,14 +8,22 @@ function closeAll() {
 }
 document.addEventListener("click", (e) => {
     const target = e.target.closest("[data-input-dropdown-component]");
+
+    // 1. Capture the state BEFORE closing everything
+    const wasOpen = target?.dataset.state === "open";
+
+    // 2. Now it's safe to close everything (resets the UI)
     closeAll();
+
     if (!target) return;
 
     const input = target.querySelector("[data-input-dropdown-storage]");
     const content = e.target.closest("[data-input-dropdown-content]");
     const trigger = e.target.closest("[data-input-dropdown-trigger]");
-    if (trigger && target.dataset.state === "open") {
-        return closeAll();
+
+    // 3. Use the captured variable 'wasOpen' instead of checking the DOM
+    if (trigger && wasOpen) {
+        return;
     }
 
     if (content && input) {
@@ -27,11 +35,9 @@ document.addEventListener("click", (e) => {
 
         if (!selected) return;
 
-        // Set value on hidden input and trigger content
         input.value = selected;
         triggerContent.textContent = selected;
 
-        // Update dropdown item state
         const items = target.querySelectorAll("[data-input-dropdown-item]");
         Array.from(items).forEach((item) => {
             item.dataset.inputDropdownState = "inactive";
@@ -40,7 +46,6 @@ document.addEventListener("click", (e) => {
             }
         });
 
-        target.dataset.state = "closed";
         return;
     }
 

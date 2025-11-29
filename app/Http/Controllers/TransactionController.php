@@ -23,6 +23,7 @@ class TransactionController extends Controller
 
         $transactions = Transaction::with("user")
             ->when($search, fn($q) => $q->search($search))
+            ->orderBy("created_at", "desc")
             ->paginate(20);
         $transactions->through(function ($transaction) {
             $transaction->code = $this->formatCode($transaction->id);

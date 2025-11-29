@@ -78,6 +78,7 @@ class ProductController extends Controller
                 return $p->where("quantity", ">=", $this->STOCK_READY);
             })
             ->when($search, fn($p) => $p->search($search))
+            ->orderBy("created_at", "desc")
             ->paginate(20);
 
         return view("pages.inventory.index", compact("products"));
