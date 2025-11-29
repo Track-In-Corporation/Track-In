@@ -6,6 +6,7 @@ import "./layout/index.js";
 import "./preloader.js";
 import "./components/window.js";
 import "./components/dropdown.js";
+import "./components/input-dropdown.js";
 import "./pages/inventory.js";
 import { QueryClient } from "./queryClient.js";
 

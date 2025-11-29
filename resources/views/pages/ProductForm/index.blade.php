@@ -1,4 +1,4 @@
-@extends("layout.index")
+@extends('layout.index')
 
 @section('content')
     @include('pages.ProductForm.Header')
@@ -11,4 +11,5 @@
             @include('pages.ProductForm.Right.Detail')
         </div>
     </div>
+    @endphp
 @endsection
