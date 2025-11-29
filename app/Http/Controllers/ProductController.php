@@ -22,7 +22,7 @@ class ProductController extends Controller
         return view('pages.product-form.index', compact( 'brands', 'units', 'materialFamilies', 'types'));
     }
 
-    public function addProduct(Request $request) {
+    public function createProduct(Request $request) {
         $brands = Product::pluck('brand')->unique()->values()->all();
         $materialFamilies = Product::pluck('material_family')->unique()->values()->all();
         $units = Product::pluck('unit')->unique()->values()->all();
