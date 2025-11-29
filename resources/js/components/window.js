@@ -4,7 +4,6 @@ window.addEventListener("click", (e) => {
     const windowContainer = document.querySelector("[data-window-component]");
     const trigger = e.target.closest("[data-window-trigger]");
     const close = e.target.closest("[data-window-close]");
-
     if (!windowContainer) return;
 
     // Handle manual close

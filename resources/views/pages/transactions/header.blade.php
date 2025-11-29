@@ -1,9 +1,9 @@
-<div class=" pt-6 px-8 pb-4">
+<div class=" pt-6 px-8 pb-0">
     <h1 class="text-[1.6rem] tracking-tight mb-3">Transactions</h1>
 
     <div class="border-t  py-4 flex gap-3 justify-between">
         <div class="flex gap-6">
-            <x-search-bar></x-search-bar>
+            <x-search-bar route="{{ route('transactions') }}"></x-search-bar>
             <div class="w-px h-full bg-border"></div>
         </div>
         <button

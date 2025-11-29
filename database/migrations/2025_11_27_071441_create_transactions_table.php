@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('recipient_name');
             $table->string('recipient_address');
+            $table->enum("status", ["pending", "on-delivery", "waiting-payment", "completed"]);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

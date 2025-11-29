@@ -1,7 +1,9 @@
-@extends("layout.index")
+@extends('layout.index')
 
-@section("content")
+@section('content')
+    @include('pages.transactions.details.index')
     <section class="h-full flex flex-col">
-        @include("pages.transactions.header")
+        @include('pages.transactions.header')
+        @include('pages.transactions.table')
     </section>
 @endsection

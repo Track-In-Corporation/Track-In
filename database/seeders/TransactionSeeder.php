@@ -44,7 +44,7 @@ class TransactionSeeder extends Seeder
                     "transaction_id" => $transaction->id,
                     "product_code" => $product->code,
                     "quantity" => $buyQuantity,
-                    "price" => $product->price
+                    "price" => $product->price,
                 ]);
 
                 // Update in memory product quantity

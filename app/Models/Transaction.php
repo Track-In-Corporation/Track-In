@@ -11,6 +11,16 @@ class Transaction extends Model
 
     protected $fillable = ['recipient_name', 'recipient_address', 'user_id'];
 
+    // Handles multi column search
+    private $SEARCH_COLUMNS = ["id", "recipient_name", "status"];
+    public function scopeSearch($query, $term) {
+        $query->where(function($q) use ($term) {
+            foreach($this->SEARCH_COLUMNS as $column) {
+                $q->orWhere($column, "like", "%$term%");
+            };
+        });
+    }
+
     public function invoice()
     {
         return $this->hasOne(Invoice::class, 'transaction_id', 'id');

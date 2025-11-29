@@ -18,9 +18,10 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            "recipient_name" => fake()->text(8),
+            "recipient_name" => fake()->text(20),
             "recipient_address" => fake()->address(),
             "user_id" => User::inRandomOrder()->first()->id, // random users
+            "status" => fake()->randomElement(["pending", "on-delivery", "waiting-payment", "completed"])
         ];
     }
 }

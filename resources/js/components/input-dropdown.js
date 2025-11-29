@@ -8,12 +8,12 @@ function closeAll() {
 }
 document.addEventListener("click", (e) => {
     const target = e.target.closest("[data-input-dropdown-component]");
-    if (!target) return closeAll();
+    closeAll();
+    if (!target) return;
 
     const input = target.querySelector("[data-input-dropdown-storage]");
     const content = e.target.closest("[data-input-dropdown-content]");
     const trigger = e.target.closest("[data-input-dropdown-trigger]");
-
     if (trigger && target.dataset.state === "open") {
         return closeAll();
     }

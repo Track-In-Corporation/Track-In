@@ -11,9 +11,9 @@
     $finalValue = $resolvedValue ?? ($items[0] ?? null);
 @endphp
 
-<div class="relative z-10 group w-full" data-input-dropdown-component>
+<div class="relative z-10 group w-full " data-input-dropdown-component>
     <div @class([
-        'grid grid-cols-[auto_1fr_auto] w-full py-2 px-4 pr-2 bg-input-background border rounded-md shadow-soft gap-2 animate-cta hover:border-secondary',
+        'grid grid-cols-[auto_1fr_auto] relative w-full py-2 px-4 pr-2 bg-input-background border rounded-md shadow-soft gap-2 animate-cta hover:border-secondary',
         $triggerClass,
     ]) data-input-dropdown-trigger>
         <div data-input-dropdown-trigger-content class="flex gap-2 items-center text-sm">
@@ -23,7 +23,7 @@
         <iconify-icon data-input-dropdown-trigger-chevron class="rotate-180 text-lg"
             icon="tabler:chevron-up"></iconify-icon>
     </div>
-    <div class="absolute inset-0 top-11 border h-fit bg-white shadow-soft rounded-md group-data-[state=open]:opacity-100 group-data-[state=open]:visible group-data-[state=open]:translate-y-0 group-data-[state=open]:scale-100  opacity-0 invisible -translate-y-4 scale-95 transition-all duration-200 p-1"
+    <div class="absolute z-50 inset-0 top-11 border h-fit bg-white shadow-soft rounded-md group-data-[state=open]:opacity-100 group-data-[state=open]:visible group-data-[state=open]:translate-y-0 group-data-[state=open]:scale-100  opacity-0 invisible -translate-y-4 scale-95 transition-all duration-200 p-1"
         data-input-dropdown-content>
         @foreach ($items as $item)
             <div data-input-dropdown-item="{{ $item }}"

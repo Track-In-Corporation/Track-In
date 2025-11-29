@@ -1,17 +1,19 @@
 import { API_URL } from "../config/constants";
 import { QueryClient } from "../query-client";
 
-async function renderInventoryDetails() {
-    const container = document.querySelector("[data-product-detail-container]");
+async function renderTransactionDetails() {
+    const container = document.querySelector(
+        "[data-transaction-detail-container]"
+    );
     const windowComponent = document.querySelector("[data-window-component]");
-    const code = windowComponent?.dataset.content || "PRD001";
-    if (!code || !container) return;
+    const id = windowComponent?.dataset.content;
+    if (!id || !container) return;
 
     container.innerHTML = "";
     container.dataset.isLoading = true;
     try {
         // Fetch partial page
-        const res = await fetch(`${API_URL}/products/${code}`);
+        const res = await fetch(`${API_URL}/transactions/${id}`);
         const json = await res.json();
         if (!res.ok) throw new Error("Request did not succeed");
 
@@ -24,4 +26,4 @@ async function renderInventoryDetails() {
     container.dataset.isLoading = false;
 }
 
-QueryClient.subscribe("inventory", renderInventoryDetails);
+QueryClient.subscribe("transaction", renderTransactionDetails);

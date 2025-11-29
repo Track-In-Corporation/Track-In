@@ -22,25 +22,29 @@ class ProductController extends Controller
         return view('pages.product-form.index', compact('types', 'units', 'materialFamilies', 'brands'));
     }
 
-    public function inventory() {
-      $type = request()->query("type") ?? "materials";
-      $filter = request()->query("active");
-      $search = request()->query("search");
+    public function getProducts() {
+        if(!request()->query("type")) {
+            return redirect(request()->fullUrlWithQuery(["type" => "materials"]));
+        }
 
-      $products = Product::where("type", $type)
-        ->when($filter == "stock-low", function($p) {
-          return $p->where("quantity", "<=", $this->STOCK_LOW);
-        })
-        ->when($filter == "stock-medium", function($p) {
-          return $p->whereBetween("quantity", [$this->STOCK_LOW, $this->STOCK_MEDIUM]);
-        })
-        ->when($filter == "stock-ready", function($p) {
-          return $p->where("quantity", ">=", $this->STOCK_READY);
-        })
-        ->when($search, fn($p) => $p->search($search))
-        ->paginate(20);
+        $type = request()->query("type");
+        $filter = request()->query("active");
+        $search = request()->query("search");
 
-      return view("pages.inventory.index", compact("products"));
+        $products = Product::where("type", $type)
+            ->when($filter == "stock-low", function($p) {
+                return $p->where("quantity", "<=", $this->STOCK_LOW);
+            })
+            ->when($filter == "stock-medium", function($p) {
+                return $p->whereBetween("quantity", [$this->STOCK_LOW, $this->STOCK_MEDIUM]);
+            })
+            ->when($filter == "stock-ready", function($p) {
+                return $p->where("quantity", ">=", $this->STOCK_READY);
+            })
+            ->when($search, fn($p) => $p->search($search))
+            ->paginate(20);
+
+        return view("pages.inventory.index", compact("products"));
     }
 
     public function getProduct($code) {
