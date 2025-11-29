@@ -2,7 +2,7 @@
 
 @section('content')
     @include('pages.product-form.header')
-    <form method="POST" action="{{ route('store-product') }}">
+    <form method="POST" action="{{ route('add-product') }}">
         <div class="grid grid-cols-[4fr_2.25fr] md:grid-cols-1">
             @csrf
             <div class="flex flex-col px-8 py-5 gap-6">

@@ -13,6 +13,7 @@
     </head>
 
     <body style="visibility:invisible;">
+        <x-delete-modal></x-delete-modal>
         <main data-navbar-state='closed'
             class="transition-[grid-template-columns] duration-200 layout bg-background grid grid-cols-[3.5rem_1fr] min-h-dvh data-[navbar-state=open]:grid-cols-[15rem_1fr] group">
             @include('layout.navbar')

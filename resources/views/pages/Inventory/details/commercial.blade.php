@@ -1,4 +1,4 @@
-<div class="border rounded-lg mt-6">
+<div class="border rounded-lg mt-4">
     <p class="bg-input-background border-b px-4 py-2 rounded-t-lg">Komersial</p>
     <div class="grid grid-cols-[1fr_auto_1fr_auto_1fr] bg-white py-4">
         <div class="w-full flex items-center justify-center">

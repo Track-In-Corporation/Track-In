@@ -14,7 +14,7 @@ class ProductController extends Controller
     private $STOCK_MEDIUM = 5;
     private $STOCK_READY = 20;
 
-    public function addProduct(){
+    public function getProductForm(){
         $brands = Product::pluck('brand')->unique()->values();
         $materialFamilies = Product::pluck('material_family')->unique()->values();
         $units = Product::pluck('unit')->unique()->values();
@@ -22,7 +22,7 @@ class ProductController extends Controller
         return view('pages.product-form.index', compact( 'brands', 'units', 'materialFamilies', 'types'));
     }
 
-    public function storeProduct(Request $request) {
+    public function addProduct(Request $request) {
         $brands = Product::pluck('brand')->unique()->values()->all();
         $materialFamilies = Product::pluck('material_family')->unique()->values()->all();
         $units = Product::pluck('unit')->unique()->values()->all();
@@ -92,5 +92,10 @@ class ProductController extends Controller
 
         $htmlString = view("pages.inventory.details.content", compact("product"))->render();
         return $this->success($htmlString, "Successfully retrieved product");
+    }
+
+    public function deleteProduct($code) {
+        Product::findOrFail($code)->delete();
+        return back();
     }
 }
