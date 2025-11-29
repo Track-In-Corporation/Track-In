@@ -8,15 +8,35 @@
         <div class="flex flex-col gap-4">
             @include('pages.product-form.left.radio-button')
             <p class="text-secondary italic mb-2">*Dapat memilih lebih dari satu</p>
-            <div class="flex gap-4">
-                <x-input label="Ukuran" placeholder="8" class="mt-1" name="size" :error="$errors->first('size')" />
-                <x-generic-dropdown name="unit" label="Unit" :items="$units" :value="old('unit')" />
+            <div class="flex gap-4 relative z-20">
+                <x-input
+                    label="Ukuran"
+                    placeholder="8"
+                    class="mt-0.5"
+                    name="size"
+                    :value="old('size')"
+                    :error="$errors->first('size')"
+                />
+                <x-input-dropdown
+                    triggerClass="py-3"
+                    label="Satuan"
+                    name="unit"
+                    :items="$units"
+                    :value="old('unit')"
+                    :error="$errors->first('unit')"
+                    >
+                </x-input-dropdown>
             </div>
             <div class="flex">
-                <x-input-dropdown triggerClass="py-3" name="material" :items="$materialFamilies" :value="old('material')">
+                <x-input-dropdown
+                    triggerClass="py-3"
+                    label="Material"
+                    name="material_family"
+                    :items="$materialFamilies"
+                    :value="old('material_family')"
+                    :error="$errors->first('material_family')"
+                    >
                 </x-input-dropdown>
-
-                {{-- <x-generic-dropdown name="material" label="Material" :items="$materialFamilies" :value="old('material')" /> --}}
             </div>
         </div>
     </div>

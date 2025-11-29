@@ -4,11 +4,17 @@
     <p class="text-secondary mt-0.5">
         Beberapa produk memiliki detail pengisian data yang berbeda
     </p>
-    @include('components.type-selector')
+    @include('components.type-selector', ['error' => $errors->first('type')])
 
     <div class="pt-4">
-        <x-input label="Deskripsi Produk" placeholder="Flange 8'' #150 Blind.." class="mt-1" name="description"
-            :error="$errors->first('description')" />
+        <x-input
+            label="Deskripsi Produk"
+            placeholder="Flange 8'' #150 Blind.."
+            class="mt-1"
+            name="description"
+            :value="old('description')"
+            :error="$errors->first('description')"
+        />
     </div>
     <hr class="mt-10" />
 </div>
