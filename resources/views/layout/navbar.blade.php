@@ -1,20 +1,20 @@
 @php
     $navigations = [
         [
-            "display" => "Inventory",
-            "route" => "inventory",
-            "icon" => "tabler:box",
+            'display' => 'Inventory',
+            'route' => 'inventory',
+            'icon' => 'tabler:box',
         ],
         [
-            "display" => "Transaction",
-            "route" => "transactions",
-            "icon" => "mdi:cart-outline",
+            'display' => 'Transaction',
+            'route' => 'transactions',
+            'icon' => 'mdi:cart-outline',
         ],
-        [
-            "display" => "User",
-            "route" => "users",
-            "icon" => "mdi:user-outline",
-        ],
+        // [
+        //     'display' => 'User',
+        //     'route' => 'users',
+        //     'icon' => 'mdi:user-outline',
+        // ],
     ];
 @endphp
 <nav class="px-2 navbar relative flex flex-col">
@@ -33,17 +33,17 @@
     <ul class="py-2.5 flex flex-col flex-1">
         @foreach ($navigations as $nav)
             @php
-                $isSelected = request()->is($nav["route"] . "*");
+                $isSelected = request()->is($nav['route'] . '*');
             @endphp
             <a @class([
-                "flex items-center justify-start gap-2 p-2 overflow-hidden group rounded-md",
-                "bg-white [&>*]:text-accent shadow-soft" => $isSelected,
-                "hover:bg-secondary/10 animate-cta" => !$isSelected,
-            ]) href={{ $nav["route"] }}>
-                <iconify-icon icon="{{ $nav["icon"] }}" class="text-2xl text-secondary"></iconify-icon>
+                'flex items-center justify-start gap-2 p-2 overflow-hidden group rounded-md',
+                'bg-white [&>*]:text-accent shadow-soft' => $isSelected,
+                'hover:bg-secondary/10 animate-cta' => !$isSelected,
+            ]) href={{ route($nav['route']) }}>
+                <iconify-icon icon="{{ $nav['icon'] }}" class="text-2xl text-secondary"></iconify-icon>
                 <p
                     class="text-secondary text-sm group-data-[navbar-state=closed]:opacity-0 min-w-0 transition-all truncate">
-                    {{ $nav["display"] }}</p>
+                    {{ $nav['display'] }}</p>
             </a>
         @endforeach
     </ul>

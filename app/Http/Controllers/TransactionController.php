@@ -11,10 +11,6 @@ class TransactionController extends Controller
 {
     use APIResponse;
 
-    public function view() {
-        return view("pages.transactions.index");
-    }
-
     private function formatCode(string $id) {
         return "ORDER".str_pad($id, 3, "0", STR_PAD_LEFT);
     }
@@ -53,8 +49,13 @@ class TransactionController extends Controller
     }
 
     public function getTransactionForm(){
+        $type = request("type");
+        if(!$type) {
+            return redirect(request()->fullUrlWithQuery(["type" => "materials"]));
+        }
+
         $types = Product::pluck('type')->unique()->values();
-        $products = Product::all();
+        $products = Product::where("type", $type)->get();
         return view('pages.transaction-form.index', compact('types', 'products'));
     }
 }
