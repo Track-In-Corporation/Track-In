@@ -1,3 +1,4 @@
+import { Toast } from "../../components/toast";
 import { API } from "../../utils/api";
 
 // 1. Listens for the click on your UI element
@@ -45,6 +46,10 @@ async function handleFileUpload(file, wrapperElement) {
 
         window.location.reload();
     } catch (err) {
-        console.error("Upload Failed:", err);
+        const errorMessage = err.data?.errors?.profile_picture?.[0];
+        Toast.error(
+            "Oops, Something Went Wrong!",
+            errorMessage || "Terjadi sebuah masalah yang tidak terduga"
+        );
     }
 }

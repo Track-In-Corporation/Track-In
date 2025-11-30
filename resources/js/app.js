@@ -16,5 +16,6 @@ import "./components/dropdown.js";
 import "./components/input-dropdown.js";
 import "./components/user-selector.js";
 import "./components/delete-modal.js";
+import { Toast } from "./components/toast.js";
 
 // setTimeout(() => QueryClient.publish("users"), 0);
