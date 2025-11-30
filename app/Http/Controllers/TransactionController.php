@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Traits\APIResponse;
 use Illuminate\Http\Request;
@@ -49,5 +50,11 @@ class TransactionController extends Controller
 
         $htmlString = view("pages.transactions.details.content", compact("transaction"))->render();
         return $this->success($htmlString, "Sucessfully retrieved transaction");
+    }
+
+    public function getTransactionForm(){
+        $types = Product::pluck('type')->unique()->values();
+        $products = Product::all();
+        return view('pages.transaction-form.index', compact('types', 'products'));
     }
 }

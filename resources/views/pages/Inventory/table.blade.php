@@ -44,7 +44,6 @@
                 <div>{{ $product['brand'] }}</div>
                 <div>@formatToRupiah($product['price'])</div>
                 <div>@formatNumber($product['quantity'])</div>
-
             </div>
         @endforeach
     </div>

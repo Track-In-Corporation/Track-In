@@ -11,6 +11,7 @@ Route::get('/', function () {
 // View Routes -> Redirect to views
 Route::get('/inventory', [ProductController::class, 'getProducts'])->name('inventory');
 Route::get('/inventory/form', [ProductController::class, 'getProductForm'])->name('product-form');
+Route::get('/transaction/form', [TransactionController::class, 'getTransactionForm'])->name('transaction-form');
 Route::get('/transactions', [TransactionController::class, 'getTransactions'])->name('transactions');
 
 // Action Routes -> Perform mutations (delete, update, create)

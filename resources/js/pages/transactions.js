@@ -27,3 +27,5 @@ async function renderTransactionDetails() {
 }
 
 QueryClient.subscribe("transaction", renderTransactionDetails);
+
+
