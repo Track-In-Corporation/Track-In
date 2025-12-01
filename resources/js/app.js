@@ -9,12 +9,13 @@ import "./pages/transaction/init.js";
 
 import "./pages/users/init.js";
 import "./pages/users/update-user.js";
+import "./pages/users/create-user.js";
 import "./pages/users/update-image.js";
 
 import "./components/window.js";
 import "./components/dropdown.js";
 import "./components/input-dropdown.js";
-import "./components/user-selector.js";
+import "./components/role-selector.js";
 import "./components/delete-modal.js";
 import { Toast } from "./components/toast.js";
 

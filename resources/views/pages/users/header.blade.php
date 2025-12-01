@@ -7,10 +7,5 @@
             <div class="w-px bg-border"></div>
             @include('pages.users.filter')
         </div>
-        <a href={{ route('transaction-form') }}
-            class="flex items-center gap-2 bg-accent text-white px-5 py-1.5 rounded-md shadow-[0_0_10px_0_rgba(118,120,255,0.21)]">
-            <iconify-icon class="text-xl" icon="ic:round-plus"></iconify-icon>
-            <p class="text-sm">Tambahkan</p>
-        </a>
     </div>
 </div>

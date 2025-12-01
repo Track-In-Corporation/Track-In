@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route("inventory");
 });
 
 // View Routes -> Redirect to views
@@ -27,5 +27,6 @@ Route::prefix("api")->group(function() {
     Route::get('/transactions/{id}', [TransactionController::class, 'getTransaction']);
     Route::get('/users/{id}', [UserController::class, 'getUser']);
     Route::put('/users/{id}', [UserController::class, 'updateUser']);
-    Route::post('/users/{id}/profile-picture', [UserController::class, 'updateProfilePicture']);
+    Route::post('/users/{id}/profile-picture', [UserController::class, 'updateUserProfilePicture']);
+    Route::post('/users', [UserController::class, 'createUser']);
 });

@@ -39,8 +39,9 @@ export class API {
     }
 
     static async post(url, body, opts = {}) {
+        const headers = this.getHeaders(body instanceof FormData);
         const res = await fetch(this.API_URL + url, {
-            headers: this.getHeaders(body instanceof FormData),
+            headers,
             method: "POST",
             body: body instanceof FormData ? body : JSON.stringify(body),
             ...opts,

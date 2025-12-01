@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Traits\APIResponse;
@@ -45,6 +46,12 @@ class UserController extends Controller
         $validatedData = $request->validated();
         $user = User::find($id)->update($validatedData);
         return $this->success($user, "Successfully updated the user with id $id");
+    }
+
+    public function createUser(CreateUserRequest $request) {
+        $validatedData = $request->validated();
+        $user = User::create($validatedData);
+        return $this->success($user, "Successfully created a new user");
     }
 
     public function updateProfilePicture(Request $request, $id) {
