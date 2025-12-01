@@ -4,10 +4,10 @@
             <iconify-icon icon="tabler:chevron-left" width="20"></iconify-icon>
         </a>
         <div>
-            <h2 class="font-semibold text-2xl">Tambahkan Barang
+            <h2 class="font-semibold text-2xl">Tambahkan Transaksi
             </h2>
             <p class="text-secondary font-normal tracking-normal text-sm mt-0.5">
-            Masukan data untuk menambahkan barang ke dalam inventaris
+            Masukan data untuk menambahkan transaksi baru
             </p>
         </div>
     </div>

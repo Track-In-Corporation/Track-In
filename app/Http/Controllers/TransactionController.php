@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\TransactionItem;
 use App\Traits\APIResponse;
 use Illuminate\Http\Request;
 
@@ -52,14 +53,89 @@ class TransactionController extends Controller
 
     public function getTransactionForm(){
         $type = request("type");
+        $search = request("search");
         if(!$type) {
             return redirect(request()->fullUrlWithQuery(["type" => "materials"]));
         }
 
         $types = Product::pluck('type')->unique()->values();
-        $products = Product::where("type", $type)->get();
-        return view('pages.transaction-form.index', compact('types', 'products'));
+        $products = Product::where("type", $type)
+            ->when($search, function($query) use ($search) {
+                return $query->search($search);
+            })
+            ->search($search)
+            ->get();
+            return view('pages.transaction-form.index', compact('types', 'products'));
+        }
+
+    public function createTransaction(Request $request)
+    {
+        // dd($request->all());
+        $validProducts = Product::pluck('code')->values()->all();
+
+        $validated = $request->validate([
+            'recipient_name' => 'required|string|min:3|max:100',
+            'recipient_address' => 'required|string|min:10|max:255',
+            'products' => 'required|array',
+        ]);
+
+        $items = collect($validated['products'])
+            ->filter(fn($qty) => $qty > 0);
+
+        if ($items->isEmpty()) {
+            return back()
+                ->withErrors(['products' => 'Minimal pilih 1 produk dengan quantity > 0'])
+                ->withInput();
+        }
+
+        foreach ($items as $productCode => $qty) {
+            // dd([
+            //     'productCode' => $productCode,
+            //     'qty' => $qty,
+            //     'items' => $items
+            // ]);
+
+            if (!in_array($productCode, $validProducts)) {
+                return back()->withErrors([
+                    'products' => "Produk $productCode tidak valid"
+                ])->withInput();
+            }
+
+            $product = Product::where('code', $productCode)->first();
+
+            if ($product->quantity < $qty) {
+                return back()->withErrors([
+                    'products' => "Stok produk $productCode hanya {$product->quantity}, tidak cukup untuk $qty"
+                ])->withInput();
+            }
+        }
+
+        $transaction = Transaction::create([
+            'recipient_name' => $validated['recipient_name'],
+            'recipient_address' => $validated['recipient_address'],
+            'status' => 'pending',
+            'user_id' => 1,
+        ]);
+
+        foreach ($items as $productCode => $qty) {
+
+            $product = Product::where('code', $productCode)->first();
+
+            TransactionItem::create([
+                'transaction_id' => $transaction->id,
+                'product_code' => $productCode,
+                'quantity' => $qty,
+                'price' => $product->price,
+            ]);
+
+            $product->decrement('quantity', $qty);
+        }
+
+
+        return redirect()->route('transactions')
+            ->with('success', 'Transaksi berhasil dibuat!');
     }
+
 
     public function deleteTransaction($id) {
         Transaction::findOrFail($id)->delete();

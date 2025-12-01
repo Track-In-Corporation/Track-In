@@ -18,6 +18,7 @@ Route::get('/users', [UserController::class, 'getUsers'])->name('users');
 
 // Action Routes -> Perform mutations (delete, update, create)
 Route::post('/products', [ProductController::class, 'createProduct'])->name('create.product');
+Route::post('/transaction', [TransactionController::class, 'createTransaction'])->name('create.transaction');
 Route::delete('/products/{code}', [ProductController::class, 'deleteProduct'])->name('delete.product');
 Route::delete('/transactions/{id}', [TransactionController::class, 'deleteTransaction'])->name('delete.transaction');
 

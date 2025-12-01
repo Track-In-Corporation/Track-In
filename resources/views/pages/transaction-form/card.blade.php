@@ -3,7 +3,7 @@
     'value' => 0,
 ])
 
-<div class="border flex flex-col rounded-md transition duration-75 p-0 h-full hover:border-accent cursor-pointer">
+<div class="border flex flex-col rounded-md transition duration-75 p-0 h-full hover:border-accent cursor-pointer" data-product-card>
     <div class="inline-block px-6 py-1 border-b bg-accent rounded-full w-fit m-6">
         <p class=" text-white">
             {{ $item->code }}
@@ -36,7 +36,9 @@
                 input-class="quantity-input text-center h-14"
                 placeholder="0"
                 :value="$value"
+                oninput="typeQuantity(this)"
             />
+
 
             <button
                 type="button"
@@ -110,10 +112,16 @@
 
         const diff = typed - currentHiddenQty;
 
-        if (diff > stock) return;
+        if (diff > stock) {
+            input.value = hiddenQty.value;
+            return;
+        }
 
-        hiddenStock.value = stock - diff;
-        stockDisplay.textContent = hiddenStock.value;
+
+        stock -= diff;
+
+        hiddenStock.value = stock;
+        stockDisplay.textContent = stock;
 
         hiddenQty.value = typed;
     }
