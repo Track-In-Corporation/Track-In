@@ -7,6 +7,7 @@
     'numeric' => false,
     'value' => null,
     'name' => null,
+    'type' => null,
 ])
 
 <div {{ $attributes->merge(['class' => 'w-full']) }}>
@@ -22,6 +23,7 @@
             'border-red-400' => $error,
             $inputClass,
         ]) placeholder="{{ $placeholder }}"
+            @if ($type) type="{{ $type }}" @endif
             @if ($name) name="{{ $name }}" @endif
             @if ($value) value="{{ $value }}" @endif
             @if ($numeric) inputmode="numeric" @endif>
