@@ -27,7 +27,7 @@ jobs:
 
           SSH_KEY_PATH="$HOME/.ssh/ssh_key"
           ENV_PATH="$HOME/.env"
-          SERVER_APPLICATION_PATH="~/trackin"
+          SERVER_APPLICATION_PATH='$HOME/trackin'
           SERVER_USER='${{ secrets.SERVER_USER }}'
           SERVER_IP='${{ secrets.SERVER_IP }}'
 
