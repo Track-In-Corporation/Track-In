@@ -34,11 +34,11 @@ jobs:
           mkdir -p "$(dirname $SSH_KEY_PATH)"
 
           echo '${{ secrets.SERVER_PRIVATE_KEY }}' > "$SSH_KEY_PATH"
-          chmod 700 "$SSH_KEY_PATH"
+          chmod 600 "$SSH_KEY_PATH"
           echo '${{ secrets.ENV }}' > "$ENV_PATH"
 
           # Prepare directory on the server
-          ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" << EOF
             mkdir -p "SERVER_APPLICATION_PATH"
             chown -R "$SERVER_USER:$SERVER_USER" "$SERVER_APPLICATION_PATH"
           EOF
