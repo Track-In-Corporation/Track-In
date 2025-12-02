@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
     server: {
-        https: true,
+        https: process.env.NODE_ENV === "production",
     },
     plugins: [
         laravel({
