@@ -35,7 +35,7 @@ jobs:
           echo '${{ secrets.SERVER_PRIVATE_KEY }}' > "$SSH_KEY_PATH"
           echo '${{ secrets.ENV }}' > "$ENV_PATH"
 
-          ssh "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" docker ps
+          ssh -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" docker ps
 
           # docker compose --env-file .env.prod -f compose.prod.yaml up --build -d
           # docker build -t ${{ secrets.DOCKER_USERNAME }}/petrousahatama-frontend .
