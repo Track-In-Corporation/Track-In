@@ -18,7 +18,6 @@ window.addEventListener(
         if (deleteBtn) {
             confirmationModal.dataset.state = "open";
             const action = deleteBtn.dataset.action;
-            console.log(action);
             modalDeleteForm.action = action;
             return;
         }

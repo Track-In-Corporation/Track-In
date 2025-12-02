@@ -4,6 +4,6 @@
         <p class="text-secondary font-regular text-sm mt-0.5">Pilih produk yang ingin dimasukkan ke dalam transaksi</p>
     </div>
     <div class="flex items-end gap-2 h-fit">
-        <x-search-bar route="{{ route('transaction-form') }}"></x-search-bar>
+        @include('pages.transaction-form.search-bar')
     </div>
 </div>

@@ -55,7 +55,7 @@ class TransactionController extends Controller
         $type = request("type");
         $search = request("search");
         if(!$type) {
-            return redirect(request()->fullUrlWithQuery(["type" => "materials"]));
+            return redirect(request()->fullUrlWithQuery(["type" => "materials"]));;
         }
 
         $types = Product::pluck('type')->unique()->values();
@@ -70,7 +70,13 @@ class TransactionController extends Controller
 
     public function createTransaction(Request $request)
     {
-        // dd($request->all());
+        if (request("mode") == "search") {
+            // dd($request->input("type"));
+            return redirect()
+                ->route("transaction-form", ["search" => $request->input("search"), "type" => $request->input("type")])
+                ->withInput($request->all());
+        }
+
         $validProducts = Product::pluck('code')->values()->all();
 
         $validated = $request->validate([
