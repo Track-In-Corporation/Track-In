@@ -13,51 +13,61 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-
-      - name: Login docker
+      # 1. Login to Docker Hub
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build
+      # 2. Build and Push (Happens on GitHub Agent)
+      - name: Build and Push Docker Images
         run: |
+          # Create the .env.prod file locally so Docker Compose can read variables if needed
+          echo "${{ secrets.ENV }}" > .env.prod
 
-          SERVER_APPLICATION_PATH="~/trackin"
+          # Build the images defined in your compose file
+          docker compose --env-file .env.prod -f compose.prod.yaml build
+
+          # Push the images to Docker Hub
+          docker compose --env-file .env.prod -f compose.prod.yaml push
+
+      # 3. Deploy to Server
+      - name: Deploy to Server
+        run: |
+          # --- CONFIGURATION ---
           SSH_KEY_PATH="$HOME/.ssh/ssh_key"
-          ENV_PATH="$HOME/.env"
-          SERVER_USER='${{ secrets.SERVER_USER }}'
-          SERVER_IP='${{ secrets.SERVER_IP }}'
+          SERVER_USER="${{ secrets.SERVER_USER }}"
+          SERVER_IP="${{ secrets.SERVER_IP }}"
+          SERVER_PATH="/home/$SERVER_USER/trackin"
 
-          mkdir -p "$(dirname $SSH_KEY_PATH)"
+          # --- SETUP SSH KEY ---
+          mkdir -p "$(dirname "$SSH_KEY_PATH")"
+          echo "${{ secrets.SERVER_PRIVATE_KEY }}" > "$SSH_KEY_PATH"
+          chmod 600 "$SSH_KEY_PATH"
 
-          echo '${{ secrets.SERVER_PRIVATE_KEY }}' > "$SSH_KEY_PATH"
-          chmod 700 "$SSH_KEY_PATH"
-          echo '${{ secrets.ENV }}' > "$GITHUB_WORKSPACE/.env.prod"
+          # --- SETUP REMOTE DIRECTORY ---
+          ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" \
+            "mkdir -p $SERVER_PATH"
 
-          # Prepare directory on the server
+          # --- COPY CONFIG FILES ONLY ---
+          # We ONLY copy the compose file and the env file.
+          # We do NOT copy the source code (src/) because the code is inside the Docker images now.
+          scp -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" \
+            compose.prod.yaml .env.prod \
+            "$SERVER_USER@$SERVER_IP:$SERVER_PATH"
+
+          # --- PULL AND RESTART ---
           ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" << EOF
             set -xe
+            cd $SERVER_PATH
 
-            if [ "$SERVER_APPLICATION_PATH" == "/home/$SERVER_USER" ] || [ -z "$SERVER_APPLICATION_PATH" ]; then
-              echo "ERROR: Dangerous path detected! Stopping to save your server."
-              exit 1
-            fi
+            # Pull the new images we just pushed
+            docker compose --env-file .env.prod -f compose.prod.yaml pull
 
-            # Safe to proceed
-            mkdir -p "$SERVER_APPLICATION_PATH"
-            chown -R "$SERVER_USER:$SERVER_USER" "$SERVER_APPLICATION_PATH"
-          EOF
+            # Restart containers (only recreates if image changed)
+            docker compose --env-file .env.prod -f compose.prod.yaml up -d
 
-          # Copy files from agent to the server
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i $SSH_KEY_PATH" \
-            "$GITHUB_WORKSPACE/" \
-            "$SERVER_USER@$SERVER_IP:$SERVER_APPLICATION_PATH"
-
-          # Start the docker container
-          ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" << EOF
-             cd $SERVER_APPLICATION_PATH
-             docker compose --env-file .env.prod -f compose.prod.yaml up --build -d
+            # Cleanup old images to save space
+            docker image prune -f
           EOF
