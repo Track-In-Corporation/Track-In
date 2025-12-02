@@ -25,8 +25,8 @@ jobs:
       - name: Build
         run: |
 
-          SSH_KEY_PATH="~/.ssh/ssh_key"
-          ENV_PATH="~/.env"
+          SSH_KEY_PATH="$HOME/.ssh/ssh_key"
+          ENV_PATH="$HOME/.env"
           SERVER_USER='${{ secrets.SERVER_USER }}'
           SERVER_IP='${{ secrets.SERVER_IP }}'
 
@@ -36,7 +36,7 @@ jobs:
           chmod 700 "$SSH_KEY_PATH"
           echo '${{ secrets.ENV }}' > "$ENV_PATH"
 
-          ssh -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" docker ps
+          ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$SERVER_USER@$SERVER_IP" docker ps
 
           # docker compose --env-file .env.prod -f compose.prod.yaml up --build -d
           # docker build -t ${{ secrets.DOCKER_USERNAME }}/petrousahatama-frontend .
