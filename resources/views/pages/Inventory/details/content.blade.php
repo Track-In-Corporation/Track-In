@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="flex items-center gap-3">
-            <a href={{ route('product-form', ['code' => $product->code]) }}
+            <a href={{ route('product-edit', ['code' => $product->code]) }}
                 class="hover:border-secondary hover:*:text-primary animate-cta p-2 w-fit border shadow-soft rounded-md flex items-center justify-center aspect-square animate-cta">
                 <iconify-icon icon="tabler:edit" class="text-xl text-secondary animate-cta"></iconify-icon>
             </a>

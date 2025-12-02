@@ -136,7 +136,6 @@ class TransactionController extends Controller
             ->with('success', 'Transaksi berhasil dibuat!');
     }
 
-
     public function deleteTransaction($id) {
         Transaction::findOrFail($id)->delete();
         return back();

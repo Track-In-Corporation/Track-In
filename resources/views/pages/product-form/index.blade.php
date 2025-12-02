@@ -2,9 +2,12 @@
 
 @section('content')
     @include('pages.product-form.header')
-    <form method="POST" action="{{ route('create.product') }}">
+    <form method="POST" action="{{ $isEdit ? route('update.product', $product->code) : route('create.product') }}">
         <div class="grid grid-cols-[4fr_2.25fr] md:grid-cols-1">
             @csrf
+            @if($isEdit)
+                @method('PUT')
+            @endif
             <div class="flex flex-col px-8 py-5 gap-6">
                 @include('pages.product-form.left.identity')
                 @include('pages.product-form.left.specification')

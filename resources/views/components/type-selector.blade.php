@@ -1,5 +1,6 @@
 @props([
     'useQueryRedirect' => false,
+    'selected' => null,
 ])
 
 @php

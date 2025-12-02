@@ -10,7 +10,14 @@
         ],
     ];
 
-    $selected = old('requirement') ? explode(',', old('requirement')) : [];
+    $selected = old('requirement')
+        ? explode(',', old('requirement'))
+        : ($isEdit
+            ? array_keys(array_filter([
+                'lartas_required' => $product->lartas_required,
+                'sni_required' => $product->sni_required,
+            ]))
+            : [])
 @endphp
 
 <ul class="rounded-md grid grid-cols-2 gap-4 mt-3 shadow-soft">

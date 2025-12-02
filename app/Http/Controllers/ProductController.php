@@ -19,7 +19,14 @@ class ProductController extends Controller
         $materialFamilies = Product::pluck('material_family')->unique()->values();
         $units = Product::pluck('unit')->unique()->values();
         $types = Product::pluck('type')->unique()->values();
-        return view('pages.product-form.index', compact( 'brands', 'units', 'materialFamilies', 'types'));
+        return view('pages.product-form.index', [
+            'isEdit' => false,
+            'product' => null,
+            'brands' => $brands,
+            'materialFamilies' => $materialFamilies,
+            'units' => $units,
+            'types' => $types
+        ]);
     }
 
     public function createProduct(Request $request) {
@@ -85,13 +92,80 @@ class ProductController extends Controller
     }
 
     public function getProduct($code) {
+        try {
+            $product = Product::find($code);
+            if($product == null) {
+                return $this->error("The product with the code $code, does not exist", 404);
+            }
+
+            $htmlString = view("pages.inventory.details.content", compact("product"))->render();
+            return $this->success($htmlString, "Successfully retrieved product");
+        } catch (\Throwable $e) {
+                return response()->json([
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile(),
+            ], 500);
+        }
+    }
+
+    public function editProductForm($code) {
         $product = Product::find($code);
-        if($product == null) {
+
+        if (!$product) {
             return $this->error("The product with the code $code, does not exist", 404);
         }
 
-        $htmlString = view("pages.inventory.details.content", compact("product"))->render();
-        return $this->success($htmlString, "Successfully retrieved product");
+        $brands = Product::pluck('brand')->unique()->values();
+        $materialFamilies = Product::pluck('material_family')->unique()->values();
+        $units = Product::pluck('unit')->unique()->values();
+        $types = Product::pluck('type')->unique()->values();
+
+        return view('pages.product-form.index', [
+            'isEdit' => true,
+            'product' => $product,
+            'brands' => $brands,
+            'units' => $units,
+            'materialFamilies' => $materialFamilies,
+            'types' => $types
+        ]);
+    }
+
+
+    public function updateProduct(Request $request, $code)
+    {
+        $product = Product::find($code);
+
+        if (!$product) {
+            return abort(404, "Produk dengan kode $code tidak ditemukan.");
+        }
+
+        $brands = Product::pluck('brand')->unique()->values()->all();
+        $materialFamilies = Product::pluck('material_family')->unique()->values()->all();
+        $units = Product::pluck('unit')->unique()->values()->all();
+
+        $validated = $request->validate([
+            'price' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:0',
+            'brand' => 'required|string|in:' . implode(',', $brands),
+            'description' => 'required|string|min:10|max:1000',
+            'size' => 'required|numeric|min:1',
+            'sch' => 'required|string|max:10',
+            'hs_code' => 'required|string|max:50|min:3',
+            'country_origin' => 'required|string|max:50|min:2',
+            'material_family' => 'required|string|in:' . implode(',', $materialFamilies),
+            'unit' => 'required|string|in:' . implode(',', $units),
+            'type' => 'required|in:materials,chemicals,raw-parts,consumables',
+            'requirement' => 'required|string|min:1'
+        ]);
+
+        $requirements = explode(',', $request->requirement ?? '');
+        $validated['sni_required'] = in_array('sni_required', $requirements);
+        $validated['lartas_required'] = in_array('lartas_required', $requirements);
+
+        $product->update($validated);
+
+        return redirect()->route('inventory')->with('success', 'Produk berhasil diperbarui!');
     }
 
     public function deleteProduct($code) {
