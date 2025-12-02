@@ -27,7 +27,7 @@ jobs:
 
           SSH_KEY_PATH="$HOME/.ssh/ssh_key"
           ENV_PATH="$HOME/.env"
-          SERVER_APPLICATION_PATH='$HOME/trackin'
+          SERVER_APPLICATION_PATH="~/trackin"
           SERVER_USER='${{ secrets.SERVER_USER }}'
           SERVER_IP='${{ secrets.SERVER_IP }}'
 
@@ -44,8 +44,10 @@ jobs:
             chown -R "$USER:$USER" "$SERVER_APPLICATION_PATH"
           EOF
 
-          # Copy application files to server
-          scp -i "$SSH_KEY_PATH" -r "$GITHUB_WORKSPACE" "$SERVER_USER@$SERVER_IP:$SERVER_APPLICATION_PATH"
+          # Copy files from agent to the server
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i $SSH_KEY_PATH" \
+            "$GITHUB_WORKSPACE/" \
+            "$SERVER_USER@$SERVER_IP:$SERVER_APPLICATION_PATH"
 
 
 
