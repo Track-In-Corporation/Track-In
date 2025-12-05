@@ -2,7 +2,7 @@
     $value = old('role') ?? $user->role;
 @endphp
 <div data-user-role-selector>
-    <p class="mb-2 text-primary text-sm">Role</p>
+    <p class="mb-2 text-primary text-sm">{{ __('messages.user.col.user_role') }}</p>
     <div class="grid grid-cols-2 gap-6">
         <div data-option="user" data-state="{{ $value == 'user' ? 'active' : 'inactive' }}"
             class="group flex items-center justify-between hover:border-secondary  animate-cta border shadow-soft px-4 py-3 rounded-md data-[state=active]:border-accent data-[state=active]:outline-accent data-[state=active]:outline">

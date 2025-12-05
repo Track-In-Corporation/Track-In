@@ -1,9 +1,9 @@
 @php
     $items = [
-        ['key' => 'User Info', 'size' => 'minmax(10rem,1fr)'],
-        ['key' => 'User Role', 'size' => 'minmax(20rem,auto)'],
+        ['key' => __('messages.user.col.user_info'), 'size' => 'minmax(10rem,1fr)'],
+        ['key' => __('messages.user.col.user_role'), 'size' => 'minmax(20rem,auto)'],
         // ['key' => 'Phone Number', 'size' => 'minmax(12rem,1fr)'],
-        ['key' => 'Terakhir Diubah', 'size' => 'minmax(12rem,auto)'],
+        ['key' => __('messages.user.col.user_last_update'), 'size' => 'minmax(12rem,auto)'],
         // ['key' => 'Status', 'size' => 'minmax(10rem,1fr)'],
     ];
     $gridColumnSizes = array_reduce($items, function ($acc, $item) {

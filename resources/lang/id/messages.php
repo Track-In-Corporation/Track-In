@@ -96,7 +96,96 @@ return [
         ]
     ],
 
-    // Login
+      // Transactions
+    'transactions' => [
+          'title' => 'Transaksi',
+
+          'col' => [
+              'code' => 'Kode',
+              'seller' => 'Penjual',
+              'buyer' => 'Pembeli',
+              'date' => 'Tanggal',
+              'status' => 'Status',
+          ],
+
+          'detail' => [
+              'title' => 'Detail Transaksi',
+              'date_made' => 'Tanggal Dibuat',
+              'name' => 'Nama',
+              'address' => 'Alamat',
+              'price_h3' => 'Rincian Harga',
+              'price_h3_desc' => 'Perhitungan semua produk dalam transaksi.',
+              'subtotal' => 'Subtotal',
+              'tax' => 'Pajak',
+          ],
+
+          'create' => [
+              'title' => 'Buat Transaksi',
+              'header' => 'Buat Transaksi',
+              'desc' => 'Masukkan data produk untuk membuat Transaksi baru.',
+
+              'information' => [
+                  'h2' => 'Informasi Transaksi',
+                  'h3' => 'Jenis Produk',
+                  'h3_desc' => 'Beberapa produk memiliki detail input yang berbeda.',
+
+                  'h4' => 'Pilih Produk',
+                  'h4_desc' => 'Pilih produk yang ingin dimassukkan ke transaksi.',
+
+                  'type' => [
+                      'consumables' => 'Produk Konsumsi',
+                      'chemicals' => 'Bahan Kimia',
+                      'raw_parts' => 'Suku Cadang',
+                      'materials' => 'Material',
+                  ],
+
+                  'input' => [
+                      'company_name' => 'Nama Perusahaan',
+                      'company_address' => 'Alamat Perusahaan',
+                  ],
+              ],
+
+              'submit' => 'Selesaikan'
+          ],
+
+          'edit' => [
+              'h3' => 'Ubah Transaksi',
+              'h3_desc' => 'Perbarui informasi transaksi yang dipilih.',
+              'submit' => 'Simpan Perubahan'
+          ],
+      ],
+      
+'user' => [
+          'title' => 'Manajemen User',
+
+          'col' => [
+              'user_info' => 'Informasi User',
+              'user_role' => 'Peran',
+              'user_last_update' => 'Terakhir Diubah',
+          ],
+
+          'create' => [
+            'title' => 'Daftarkan User',
+            'desc' => 'Masukan data untuk menambahkan data user baru.',
+            'submit' => 'Daftarkan User'
+          ],
+
+          'edit' => [
+              'title' => 'Detail User',
+
+              'information' => [
+                  'date_joined' => 'Tanggal Bergabung',
+                  'last_changed' => 'Terakhir Diubah',
+                  'usn' => 'Username',
+                  'email' => 'Email',
+                  'phone' => 'Nomor Telepon',
+                  'role' => 'Peran',
+              ],
+              'submit' => 'Simpan'
+          ],
+      ],
+    
+      // Login
     'login' => [
         'title' => 'Masuk',
         'header' => 'Selamat Datang Kembali!',
@@ -138,5 +227,10 @@ return [
         'add' => 'Tambahkan',
         'page' => 'Halaman',
         'of' => 'dari',
+        'admin' => 'Admin',
+        'user' => 'User',
+        'units' => 'Units',
+        'total' => 'Total',
+        'chosen' => 'Terpilih'
     ],
 ];

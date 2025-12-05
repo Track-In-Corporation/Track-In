@@ -2,11 +2,19 @@
     $general = [
         [
             'icon' => 'material-symbols:date-range',
-            'title' => 'Tanggal Dibuat',
+            'title' => __('messages.transactions.detail.date_made'),
             'value' => $transaction->created_at,
         ],
-        ['icon' => 'mdi:user-outline', 'title' => 'Nama', 'value' => $transaction->recipient_name],
-        ['icon' => 'tabler:address-book', 'title' => 'Alamat', 'value' => $transaction->recipient_address],
+        [
+            'icon' => 'mdi:user-outline',
+            'title' => __('messages.transactions.detail.name'),
+            'value' => $transaction->recipient_name,
+        ],
+        [
+            'icon' => 'tabler:address-book',
+            'title' => __('messages.transactions.detail.address'),
+            'value' => $transaction->recipient_address,
+        ],
     ];
 @endphp
 <div class="flex flex-col gap-4 my-6 mb-3 border-b pb-6">

@@ -107,6 +107,94 @@ return [
             'date' => 'Date',
             'status' => 'Status',
         ],
+
+        'detail' => [
+            'title' => 'Transaction Detail',
+            'date_made' => 'Created Date',
+            'name' => 'Name',
+            'address' => 'Address',
+            'price_h3' => 'Price Details',
+            'price_h3_desc' => 'Calculation of all the products in the transaction.',
+            'subtotal' => 'Subtotal',
+            'tax' => 'Tax',
+        ],
+
+        'create' => [
+            'title' => 'Create Transaction',
+            'header' => 'Create Transaction',
+            'desc' => 'Enter data of the product to create a new Transaction.',
+
+            'information' => [
+                'h2' => 'Transaction Information',
+                'h3' => 'Choose Product Type',
+                'h3_desc' => 'Some products have different details to be inputted.',
+
+                'h4' => 'Choose Product',
+                'h4_desc' => 'Choose products that will be included in the transaction.',
+
+                'type' => [
+                    'consumables' => 'Consumables',
+                    'chemicals' => 'Chemicals',
+                    'raw_parts' => 'Raw Parts',
+                    'materials' => 'Materials',
+                ],
+
+                'input' => [
+                    'company_name' => 'Company Name',
+                    'company_address' => 'Company Address',
+                ],
+            ],
+
+            'submit' => 'Done'
+        ],
+
+        'edit' => [
+          'h3' => "Update Transaction",
+          'h3_desc' => "Update chosen transaction information.",
+          'submit' => 'Save Changes'
+        ]
+    ],
+
+    // User
+    'user' => [
+        'title' => 'User Management',
+
+        'col' => [
+            'user_info' => 'User Info',
+            'user_role' => 'User Role',
+            'user_last_update' => 'Last Changed',
+        ],
+
+        'detail' => [
+            'title' => 'User Detail',
+            'date_made' => 'Created Date',
+            'name' => 'Name',
+            'address' => 'Address',
+            'price_h3' => 'Price Details',
+            'price_h3_desc' => 'Calculation of all the products in the transaction.',
+            'subtotal' => 'Subtotal',
+            'tax' => 'Tax',
+        ],
+
+        'create' => [
+            'title' => 'Create User',
+            'desc' => 'Enter data to add new user.',
+            'submit' => 'Create User'
+          ],
+
+        'edit' => [
+            'title' => 'User Detail',
+
+            'information' => [
+                'date_joined' => 'Joined Date',
+                'last_changed' => 'Last Changed',
+                'usn' => 'Username',
+                'email' => 'Email',
+                'phone' => 'Phone Number',
+                'role' => 'Role',
+            ],
+            'submit' => 'Save'
+        ],
     ],
 
     // Login
@@ -154,6 +242,11 @@ return [
         'add' => 'Add',
         'page' => 'Page',
         'of' => 'of',
+        'admin' => 'Administrator',
+        'user' => 'User',
+        'units' => 'Units',
+        'total' => 'Total',
+        'chosen' => 'Chosen'
     ],
 
 ];

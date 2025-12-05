@@ -15,6 +15,7 @@ import "./pages/users/update-image.js";
 import "./components/window.js";
 import "./components/dropdown.js";
 import "./components/input-dropdown.js";
+import "./components/profile-popup.js";
 import "./components/role-selector.js";
 import "./components/delete-modal.js";
 import { Toast } from "./components/toast.js";

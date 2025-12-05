@@ -8,7 +8,7 @@
         @if ($active)
             <x-user-role-badge variant="{{ $active }}"></x-user-role-badge>
         @else
-            <p class="text-secondary text-sm">Select Filter</p>
+            <p class="text-secondary text-sm">{{ __('messages.utils.filter') }}</p>
         @endif
     </x-slot>
     <x-slot name="content">

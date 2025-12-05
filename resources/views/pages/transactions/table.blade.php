@@ -1,10 +1,10 @@
 @php
     $items = [
-        ['key' => 'Kode', 'size' => 'minmax(10rem,auto)'],
-        ['key' => 'Penjual', 'size' => 'minmax(20rem,1fr)'],
-        ['key' => 'Pembeli', 'size' => 'minmax(12rem,1fr)'],
-        ['key' => 'Tanggal', 'size' => 'minmax(12rem,auto)'],
-        ['key' => 'Status', 'size' => 'minmax(10rem,1fr)'],
+        ['key' => __('messages.transactions.col.code'), 'size' => 'minmax(10rem,auto)'],
+        ['key' => __('messages.transactions.col.seller'), 'size' => 'minmax(20rem,1fr)'],
+        ['key' => __('messages.transactions.col.buyer'), 'size' => 'minmax(12rem,1fr)'],
+        ['key' => __('messages.transactions.col.date'), 'size' => 'minmax(12rem,auto)'],
+        ['key' => __('messages.transactions.col.status'), 'size' => 'minmax(10rem,1fr)'],
     ];
     $gridColumnSizes = array_reduce($items, function ($acc, $item) {
         return $acc . ' ' . $item['size'];

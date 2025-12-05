@@ -5,16 +5,18 @@
             <iconify-icon icon="tabler:chevron-left" width="20"></iconify-icon>
         </a>
         <div>
-            <h2 class="font-semibold text-2xl">{{ $isEdit ? 'Ubah Transaksi' : 'Tambahkan Transaksi' }}
+            <h2 class="font-semibold text-2xl">
+                {{ $isEdit ? __('messages.transactions.edit.h3') : __('messages.transactions.create.header') }}
             </h2>
             <p class="text-secondary font-normal tracking-normal text-sm mt-0.5">
-                {{ $isEdit ? 'Perbarui data transaksi yang dipilih' : 'Masukan data untuk menambahkan transaksi baru'}}
+                {{ $isEdit ? __('messages.transactions.edit.h3_desc') : __('messages.transactions.create.desc') }}
             </p>
         </div>
     </div>
     <button name="mode" value="submit" type="submit"
         class="flex items-center justify-center text-center gap-2 bg-accent text-white px-5 py-3 rounded-md shadow-[0_0_10px_0_rgba(118,120,255,0.21)] cursor-pointer">
         <iconify-icon class="text-xl" icon="material-symbols:check-rounded"></iconify-icon>
-        <p class="text-sm">{{$isEdit? 'Simpan Perubahan' : 'Selesaikan'}}</p>
+        <p class="text-sm">
+            {{ $isEdit ? __('messages.transactions.edit.submit') : __('messages.transactions.create.submit') }}</p>
     </button>
 </div>

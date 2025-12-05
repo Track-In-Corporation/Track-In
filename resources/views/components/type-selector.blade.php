@@ -5,10 +5,22 @@
 
 @php
     $inventoryTypes = [
-        'materials' => 'icon-park-outline:ad-product',
-        'chemicals' => 'solar:flame-bold',
-        'raw-parts' => 'ri:wrench-line',
-        'consumables' => 'mingcute:paper-line',
+        'materials' => [
+            'icon' => 'icon-park-outline:ad-product',
+            'label' => __('messages.transactions.create.information.type.materials'),
+        ],
+        'chemicals' => [
+            'icon' => 'solar:flame-bold',
+            'label' => __('messages.transactions.create.information.type.chemicals'),
+        ],
+        'raw-parts' => [
+            'icon' => 'ri:wrench-line',
+            'label' => __('messages.transactions.create.information.type.raw_parts'),
+        ],
+        'consumables' => [
+            'icon' => 'mingcute:paper-line',
+            'label' => __('messages.transactions.create.information.type.consumables'),
+        ],
     ];
 
     $selected = old('type', request('type', $selected ?? null));
@@ -18,7 +30,8 @@
     @foreach ($types as $type)
         @php
             $isSelected = $selected === $type;
-            $icon = $inventoryTypes[$type];
+            $icon = $inventoryTypes[$type]['icon'];
+            $label = $inventoryTypes[$type]['label'];
         @endphp
 
         <a class="type-option flex items-center gap-2 bg-white px-3 py-2 rounded-sm border shadow-soft transition cursor-pointer
@@ -43,7 +56,7 @@
 
             <p
                 class="selected-badge text-white bg-accent rounded-full px-2 text-xs ml-auto transition {{ $isSelected ? 'opacity-100' : 'opacity-0' }}">
-                Terpilih
+                {{ __('messages.utils.chosen') }}
             </p>
         </a>
     @endforeach

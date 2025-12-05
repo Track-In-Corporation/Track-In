@@ -65,7 +65,7 @@ class AuthController extends Controller
             return redirect()->intended('/inventory')->with('success', 'Logged in successfully.');
         }
 
-        return back()->withErrors(['error' => 'Email or password is incorrect.']);
+        return back()->withErrors(['passs' => 'Email or password is incorrect.']);
     }
 
     function logout(){
