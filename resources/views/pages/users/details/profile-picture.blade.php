@@ -1,4 +1,4 @@
-<div data-profile-picture-input class="absolute bottom-0 left-8 translate-y-1/2 w-32 h-32">
+<div data-profile-picture-input class="absolute bottom-0 left-8 md:left-4 translate-y-1/2 w-32 h-32">
     <div class="relative  border-6 border-white rounded-full group/profile h-full w-full">
         <input type="file" class="fixed -z-100 opacity-0">
         <iconify-icon icon="tabler:camera"

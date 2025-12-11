@@ -14,37 +14,40 @@
 
 <div class="flex-1 relative">
     <div class="absolute inset-0  overflow-auto">
-        <div class="grid border-y [&>div]:border-r [&>div]:px-4 [&>div]:py-3 bg-input-background sticky top-0 left-0 right-0"
-            style="grid-template-columns: {{ $gridColumnSizes }};">
-            @foreach ($items as $item)
-                <div class="text-sm">{!! $item['key'] !!}</div>
-            @endforeach
-        </div>
-        @foreach ($transactions as $transaction)
-            <div data-window-trigger="{{ $transaction->id }}"
-                class="grid [&>div]:text-sm [&>div]:px-4 [&>div]:py-3 border-b hover:bg-secondary/5 animate-cta"
+        <div class="relative">
+            <div class="grid [&>div]:border-y [&>div]:border-r [&>div]:px-4 [&>div]:py-3 [&>div]:bg-input-background sticky top-0 left-0 right-0"
                 style="grid-template-columns: {{ $gridColumnSizes }};">
-                <di class="flex items-center text-sm px-4">{{ $transaction['code'] }}</di>
-                <div class="flex items-center gap-4">
-                    @if ($transaction->user->profile_picture_path)
-                        <img src="{{ $transaction->user->profile_picture_path }}"
-                            class="w-10 aspect-square bg-background rounded-full object-cover"></img>
-                    @else
-                        <div class="w-10 aspect-square bg-background rounded-full"></div>
-                    @endif
+                @foreach ($items as $item)
+                    <div class="text-sm">{!! $item['key'] !!}</div>
+                @endforeach
+            </div>
+            @foreach ($transactions as $transaction)
+                <div data-window-trigger="{{ $transaction->id }}"
+                    class="grid [&>div]:text-sm [&>div]:px-4 [&>div]:py-3 [&>div]:border-b hover:bg-secondary/5 animate-cta"
+                    style="grid-template-columns: {{ $gridColumnSizes }};">
+                    <div class="flex items-center text-sm px-4">{{ $transaction['code'] }}</div>
+                    <div class="flex items-center gap-4">
+                        @if ($transaction->user->profile_picture_path)
+                            <img src="{{ $transaction->user->profile_picture_path }}"
+                                class="w-10 aspect-square bg-background rounded-full object-cover"></img>
+                        @else
+                            <div class="w-10 aspect-square bg-background rounded-full"></div>
+                        @endif
+                        <div>
+                            <p class="text-primary">{{ $transaction['user']['name'] }}</p>
+                            <p class="text-sm text-secondary">{{ $transaction['user']['email'] }}</p>
+                        </div>
+                    </div>
+                    <div>{{ $transaction['recipient_name'] }}</div>
+                    <div class="">{{ $transaction['formatted_date'] }}</div>
                     <div>
-                        <p class="text-primary">{{ $transaction['user']['name'] }}</p>
-                        <p class="text-sm text-secondary">{{ $transaction['user']['email'] }}</p>
+                        <x-status-badge variant="{{ $transaction['status'] }}"></x-status-badge>
                     </div>
                 </div>
-                <div>{{ $transaction['recipient_name'] }}</div>
-                <div class="">{{ $transaction['formatted_date'] }}</div>
-                <div>
-                    <x-status-badge variant="{{ $transaction['status'] }}"></x-status-badge>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
+
 </div>
 <div class="flex border-t px-5 py-2 items-center gap-4">
     <div class="flex gap-4 items-center">

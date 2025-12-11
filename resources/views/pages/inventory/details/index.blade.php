@@ -1,10 +1,10 @@
 <x-window width="40rem" key="code" name="inventory">
-    <div class="px-7 py-2.5 border-b flex gap-3 items-center">
+    <div class="px-7 py-2.5 border-b flex gap-3 items-center md:px-4">
         <iconify-icon icon="material-symbols:close-rounded" data-window-close
             class="text-lg text-secondary hover:opacity-50 animate-cta"></iconify-icon>
         <p class="">
-            {{__('messages.inventory.detail.title')}}
+            {{ __('messages.inventory.detail.title') }}
         </p>
     </div>
-    <div class="p-7 pt-5 pb-0 overflow-y-auto flex-1" data-product-detail-container></div>
+    <div class="p-7 pt-5 pb-0 overflow-y-auto flex-1 md:px-4" data-product-detail-container></div>
 </x-window>

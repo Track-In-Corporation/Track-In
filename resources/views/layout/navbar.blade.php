@@ -18,20 +18,21 @@
     ];
 
 @endphp
-<nav class="px-2 navbar relative flex flex-col">
-    <div class="pt-4 pb-1">
+<nav
+    class="px-2 navbar relative flex flex-col md:fixed md:bottom-0 md:left-0 md:right-0 md:border-t md:bg-white md:z-100">
+    <div class="pt-4 pb-1 md:hidden">
         <div class="flex items-center overflow-hidden rounded-md gap-0 ">
             <iconify-icon icon="mingcute:box-line" class="text-2xl p-1.5"></iconify-icon>
             <h2 class="truncate group-data-[navbar-state=closed]:opacity-0 transition duration-100">TRACK IN</h2>
         </div>
     </div>
-    <div class="w-full h-px bg-border relative">
+    <div class="w-full h-px bg-border relative md:hidden">
         <div class="-translate-y-1/2 top-1 right-0 translate-x-5 absolute hover:opacity-60 animate-cta navbar__toggle">
             <iconify-icon icon="line-md:chevron-right"
                 class="group-data-[navbar-state=open]:rotate-180 animate-cta bg-white text-base text-secondary rounded-full p-1 border shadow-soft"></iconify-icon>
         </div>
     </div>
-    <ul class="py-2.5 flex flex-col flex-1">
+    <ul class="py-2.5 flex flex-col flex-1 md:flex-row md:justify-between md:py-1">
         @foreach ($navigations as $nav)
             @php
                 $isSelected = request()->is($nav['route'] . '*');
@@ -40,53 +41,24 @@
                 }
             @endphp
             <a @class([
-                'flex items-center justify-start gap-2 p-2 overflow-hidden group rounded-md',
+                'flex items-center justify-start gap-2 p-2 overflow-hidden group rounded-md md:shadow-none! md:px-8',
                 'bg-white [&>*]:text-accent shadow-soft' => $isSelected,
                 'hover:bg-secondary/10 animate-cta' => !$isSelected,
             ]) href={{ route($nav['route']) }}>
                 <iconify-icon icon="{{ $nav['icon'] }}" class="text-2xl text-secondary"></iconify-icon>
                 <p
-                    class="text-secondary text-sm group-data-[navbar-state=closed]:opacity-0 min-w-0 transition-all truncate">
+                    class="text-secondary text-sm group-data-[navbar-state=closed]:opacity-0 min-w-0 transition-all truncate md:hidden">
                     {{ $nav['display'] }}</p>
             </a>
         @endforeach
+        <div class="hidden md:block md:px-8">
+            @include('layout.user-dropdown')
+        </div>
     </ul>
-
-    <x-language-switcher></x-language-switcher>
-
-    <div class="relative z-20 group" data-profile-popup-component data-state="closed">
-
-        {{-- Trigger Button --}}
-        <div class="mb-3 flex gap-2 items-center cursor-pointer
-               group-data-[navbar-state=open]:hover:bg-secondary/10
-               group-data-[navbar-state=closed]:hover:opacity-75
-               animate-cta p-1 rounded-lg"
-            data-profile-popup-trigger>
-            <img class="rounded-full max-w-10 max-h-10 w-full min-w-9 transition-all aspect-square border-white border"
-                src="{{ Auth::user()->profile_image_url ?? 'https://static.vecteezy.com/system/resources/thumbnails/022/014/184/small/user-icon-member-login-isolated-vector.jpg' }}"
-                alt="User Avatar">
-
-            <div class="group-data-[navbar-state=closed]:opacity-0 transition duration-100">
-                <p class="text-sm text-primary">{{ Auth::user()->name }}</p>
-                <p class="text-xs text-secondary">{{ Auth::user()->email }}</p>
-            </div>
-        </div>
-
-        {{-- Popup Dropdown --}}
-        <div class="absolute left-0 bottom-full mb-2 border bg-white shadow-soft rounded-lg w-56 p-2
-        invisible -translate-y-2 scale-95 transition-all duration-200 opacity-0
-                    group-data-[state=open]:opacity-100 group-data-[state=open]:visible
-                    group-data-[state=open]:translate-y-0 group-data-[state=open]:scale-100
-        z-9999"
-            data-profile-popup-content>
-
-            <form method="POST" action="/logout">
-                @csrf
-                <button type="submit"
-                    class="block w-full px-4 py-2 text-sm text-left text-red-500 hover:bg-red-100 hover:text-red-700">
-                    Log Out
-                </button>
-            </form>
-        </div>
+    <div class="md:hidden mb-2">
+        <x-language-switcher></x-language-switcher>
+    </div>
+    <div class="md:hidden">
+        @include('layout.user-dropdown')
     </div>
 </nav>

@@ -1,5 +1,6 @@
 @props([
     'variant' => 'user',
+    'class' => '',
 ])
 @php
     $variants = [
@@ -18,8 +19,9 @@
 @endphp
 
 <div @class([
-    'px-2 py-0.5 gap-2 rounded-sm w-fit flex items-center justify-center',
+    'px-2 py-0.5 gap-2  rounded-sm w-max flex items-center justify-center',
     $selected['styles'],
+    $class,
 ])>
     <iconify-icon class="text-lg" icon="{{ $selected['icon'] }}"></iconify-icon>
     <p class="text-sm">{{ $selected['display'] }}</p>

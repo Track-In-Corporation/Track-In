@@ -4,5 +4,5 @@
             class="text-lg text-secondary hover:opacity-50 animate-cta"></iconify-icon>
         <p class="">{{ __('messages.transactions.detail.title') }}</p>
     </div>
-    <div class="p-7 pt-0 pb-0 overflow-y-auto flex-1 flex flex-col" data-transaction-detail-container></div>
+    <div class="p-7 md:px-4 pt-0 pb-0 overflow-y-auto flex-1 flex flex-col" data-transaction-detail-container></div>
 </x-window>

@@ -1,19 +1,24 @@
-const popup = document.querySelector("[data-profile-popup-component]");
-const triggerPopUp = popup.querySelector("[data-profile-popup-trigger]");
-const contentPopUp = popup.querySelector("[data-profile-popup-content]");
+let prevPopup;
+window.addEventListener(
+    "click",
+    (e) => {
+        const clickedPopup = e.target.closest("[data-profile-popup-component]");
 
-document.addEventListener("click", (e) => {
-    const clickedInside = popup.contains(e.target);
+        // If clicked outside → close popup
+        if (!clickedPopup && prevPopup) {
+            e.preventDefault();
+            e.stopPropagation();
+            prevPopup.dataset.state = "closed";
+            return;
+        }
 
-    // If clicked outside → close popup
-    if (!clickedInside) {
-        popup.dataset.state = "closed";
-        return;
-    }
-
-    // Clicked the trigger → toggle popup
-    if (e.target.closest("[data-profile-popup-trigger]")) {
-        popup.dataset.state =
-            popup.dataset.state === "open" ? "closed" : "open";
-    }
-});
+        // Clicked the trigger → toggle popup
+        if (e.target.closest("[data-profile-popup-trigger]")) {
+            prevPopup = clickedPopup;
+            const newState =
+                clickedPopup.dataset.state === "open" ? "closed" : "open";
+            clickedPopup.dataset.state = newState;
+        }
+    },
+    true
+);

@@ -53,12 +53,13 @@
             </div>
 
             <div class="relative flex flex-row sm:flex-col justify-between w-full sm:gap-1">
-                <p class="font-medium text-sm whitespace-nowrap">{{ $type }}</p>
+                <p class="font-medium text-sm whitespace-nowrap">{{ $label }}</p>
 
                 <p
                     class="selected-badge text-white bg-accent rounded-full px-2 text-xs ml-auto transition {{ $isSelected ? 'opacity-100' : 'opacity-0' }}">
                     {{ __('messages.utils.chosen') }}
                 </p>
+            </div>
         </a>
     @endforeach
 </ul>

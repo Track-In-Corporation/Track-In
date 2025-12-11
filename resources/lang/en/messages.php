@@ -192,8 +192,8 @@ return [
                 'email' => 'Email',
                 'phone' => 'Phone Number',
                 'role' => 'Role',
+                'submit' => "Save"
             ],
-            'submit' => 'Save'
         ],
     ],
 

@@ -1,5 +1,6 @@
-[ ] /inventory salah bahasa
-[ ] user gbs Update dan delete product
-[ ] logout popup
-[ ] grid rusak di product form dan transaction form (komponennya yg rusak keknya)
-[ ] logout text random
+[V] /inventory salah bahasa
+[V] user gbs Update dan delete product
+[V] logout popup
+[V] grid rusak di product form dan transaction form (komponennya yg rusak keknya)
+[V] logout text random
+[ ] kalo sala user pas login gada error

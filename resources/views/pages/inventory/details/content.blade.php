@@ -1,13 +1,12 @@
-<div class="">
-    <div class="flex items-center justify-between">
-        <div class="flex items-center gap-4">
+<div class="md:pb-6">
+    <div class="flex items-center justify-between  xs:flex-col md:gap-1.5 md:items-start">
+        <div class="flex items-center gap-4 mb:mb-6">
             <div data-product-detail="code" class="text-2xl">{{ $product->code }}</div>
             <div class="shadow-soft border px-4 flex items-center gap-2 rounded-md py-0.5">
                 <div class="bg-green w-2 h-2 rounded-full"></div>
                 <p class="text-sm">{{ $product->type }}</p>
             </div>
         </div>
-
         @if (Auth::user()->role == 'admin')
             <div class="flex items-center gap-3">
                 <a href={{ route('product-edit', ['code' => $product->code]) }}
@@ -25,10 +24,3 @@
     @include('pages.inventory.details.commercial')
     @include('pages.inventory.details.description')
 </div>
-
-{{-- @php
-                $isSelected = request()->is($nav['route'] . '*');
-                if (Auth::user()->role !== 'admin' && $nav['display'] === 'User') {
-                    continue;
-                }
-            @endphp --}}

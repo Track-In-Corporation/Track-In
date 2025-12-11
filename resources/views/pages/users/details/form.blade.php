@@ -1,4 +1,5 @@
-<div data-update-user-form data-user-id="{{ $user->id }}" class="mt-8 flex flex-col flex-1 gap-6 px-8 pb-6">
+<div data-update-user-form data-user-id="{{ $user->id }}"
+    class="mt-8 flex flex-col flex-1 gap-6 px-8 pb-6 md:px-4 md:mt-0 md:border-t md:pt-4">
     @csrf
     <x-input label="{{ __('messages.user.edit.information.usn') }}" placeholder="John Doe" inputClass="rounded-lg! py-3.5!"
         class="mt-0.5" name="name" :value="old('name') ?? $user->name" :error="$errors->first('name')" />

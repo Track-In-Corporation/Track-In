@@ -1,10 +1,8 @@
 @php
     $items = [
-        ['key' => __('messages.user.col.user_info'), 'size' => 'minmax(10rem,1fr)'],
+        ['key' => __('messages.user.col.user_info'), 'size' => 'minmax(20rem,1fr)'],
         ['key' => __('messages.user.col.user_role'), 'size' => 'minmax(20rem,auto)'],
-        // ['key' => 'Phone Number', 'size' => 'minmax(12rem,1fr)'],
         ['key' => __('messages.user.col.user_last_update'), 'size' => 'minmax(12rem,auto)'],
-        // ['key' => 'Status', 'size' => 'minmax(10rem,1fr)'],
     ];
     $gridColumnSizes = array_reduce($items, function ($acc, $item) {
         return $acc . ' ' . $item['size'];
@@ -14,34 +12,36 @@
 
 <div class="flex-1 relative">
     <div class="absolute inset-0  overflow-auto">
-        <div class="grid border-y [&>div]:border-r [&>div]:px-4 [&>div]:py-3 bg-input-background sticky top-0 left-0 right-0"
-            style="grid-template-columns: {{ $gridColumnSizes }};">
-            @foreach ($items as $item)
-                <div class="text-sm">{!! $item['key'] !!}</div>
+        <div class="relative">
+            <div class="grid [&>div]:border-r [&>div]:px-4 [&>div]:py-3 [&>div]:bg-input-background sticky top-0 left-0 right-0 [&>div]:border-y"
+                style="grid-template-columns: {{ $gridColumnSizes }};">
+                @foreach ($items as $item)
+                    <div class="text-sm">{!! $item['key'] !!}</div>
+                @endforeach
+            </div>
+            @foreach ($users as $user)
+                <div data-window-trigger="{{ $user->id }}"
+                    class="grid [&>div]:items-center [&>div]:flex [&>div]:text-sm [&>div]:px-4 [&>div]:py-3 [&>div]:border-b hover:bg-secondary/5 animate-cta"
+                    style="grid-template-columns: {{ $gridColumnSizes }};">
+                    <div class="flex items-center gap-4 truncate">
+                        @if ($user->profile_picture_path)
+                            <img src="{{ $user->profile_picture_path }}"
+                                class="w-10 aspect-square bg-background rounded-full object-cover"></img>
+                        @else
+                            <div class="w-10 aspect-square bg-background rounded-full"></div>
+                        @endif
+                        <div class="truncate">
+                            <p class="text-primary truncate">{{ $user['name'] }}</p>
+                            <p class="text-sm text-secondary truncate">{{ $user['email'] }}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <x-user-role-badge variant="{{ $user['role'] }}"></x-user-role-badge>
+                    </div>
+                    <div>{{ $user['formatted_created_at'] }}</div>
+                </div>
             @endforeach
         </div>
-        @foreach ($users as $user)
-            <div data-window-trigger="{{ $user->id }}"
-                class="grid [&>div]:items-center [&>div]:flex [&>div]:text-sm [&>div]:px-4 [&>div]:py-3 border-b hover:bg-secondary/5 animate-cta"
-                style="grid-template-columns: {{ $gridColumnSizes }};">
-                <div class="flex items-center gap-4">
-                    @if ($user->profile_picture_path)
-                        <img src="{{ $user->profile_picture_path }}"
-                            class="w-10 aspect-square bg-background rounded-full object-cover"></img>
-                    @else
-                        <div class="w-10 aspect-square bg-background rounded-full"></div>
-                    @endif
-                    <div>
-                        <p class="text-primary">{{ $user['name'] }}</p>
-                        <p class="text-sm text-secondary">{{ $user['email'] }}</p>
-                    </div>
-                </div>
-                <div>
-                    <x-user-role-badge variant="{{ $user['role'] }}"></x-user-role-badge>
-                </div>
-                <div>{{ $user['formatted_created_at'] }}</div>
-            </div>
-        @endforeach
     </div>
 </div>
 <div class="flex border-t px-5 py-2 items-center gap-4">

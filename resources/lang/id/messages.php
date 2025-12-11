@@ -154,7 +154,7 @@ return [
               'submit' => 'Simpan Perubahan'
           ],
       ],
-      
+
       'user' => [
           'title' => 'Manajemen User',
 
@@ -180,11 +180,11 @@ return [
                   'email' => 'Email',
                   'phone' => 'Nomor Telepon',
                   'role' => 'Peran',
+                  'submit' => 'Simpan'
               ],
-              'submit' => 'Simpan'
           ],
       ],
-    
+
       // Login
     'login' => [
         'title' => 'Masuk',
