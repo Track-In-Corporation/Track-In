@@ -15,11 +15,11 @@
             <x-language-switcher />
         </div>
 
-        <form method="POST" action="/login" class="flex flex-col px-20 justify-center max-md:px-0 max-md:w-full">
+        <form method="POST" action="/login"
+            class="flex flex-col w-full px-8 mx-auto justify-center max-md:px-0 max-md:w-full py-16 ">
             @csrf
             <p class="text-4xl font-medium tracking-tight">{{ __('messages.login.header') }}</p>
-            <p class="mt-1 text-secondary">{{ __('messages.login.header_desc') }}</p>
-
+            <p class="mt-1.5 leading-relaxed text-secondary">{{ __('messages.login.header_desc') }}</p>
             <x-input label="{{ __('messages.login.input.email') }}" placeholder="elysiabellamy@gmail.com"
                 class="mt-8 mb-6  w-full" name="email" :value="old('email')" :error="$errors->first('email')" />
             <x-input label="{{ __('messages.login.input.pass') }}" placeholder="********" class="mt-1 w-full" name="pass"
@@ -33,19 +33,14 @@
 
             <button type="submit"
                 class="bg-accent mt-6 w-full rounded-xl text-white py-4 animate-cta">{{ __('messages.login.input.submit') }}</button>
-
-
             <p class="text-secondary my-8 text-center">{{ __('messages.login.input.has_acc') }} <a href="/register"><span
                         class="text-accent underline">{{ __('messages.login.input.login') }}</span></a></p>
         </form>
 
-        <p class="text-center text-tertiary">{{ __('messages.login.footer') }}</p>
+        <p class="text-sm text-center text-tertiary mb-2">{{ __('messages.login.footer') }}</p>
     </div>
 
-    <div class="w-full flex justify-center items-center max-md:hidden">
-
-        <img class="bg-cover" src="{{ asset('images/authIllust.png') }}" alt="">
+    <div class="w-full flex justify-center items-center lg:hidden">
+        <img class="object-cover h-full" src="{{ asset('images/authIllust.png') }}" alt="">
     </div>
-
-
 @endsection
