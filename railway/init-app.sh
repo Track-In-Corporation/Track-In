@@ -25,4 +25,4 @@ php artisan route:cache
 php artisan view:cache
 
 # Seed the database
-# php artisan db:seed --force
+# php artisan migrate:fresh --seed --force
