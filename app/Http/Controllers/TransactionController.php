@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use App\Models\TransactionItem;
 use App\Traits\APIResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -19,15 +20,18 @@ class TransactionController extends Controller
     public function getTransactions() {
         $search = request("search");
         $filter = request("active");
-
+        $user = Auth::user();
         $transactions = Transaction::with("user")
+            ->when($user->role !== 'admin', function ($q) use ($user) {
+                  $q->where('user_id', $user->id);
+              })
             ->when($search, fn($q) => $q->search($search))
             ->when($filter, fn($q) => $q->where("status", $filter))
             ->orderBy("created_at", "desc")
             ->paginate(20);
         $transactions->through(function ($transaction) {
             $transaction->code = $this->formatCode($transaction->id);
-            $transaction->formatted_date = $transaction->created_at->format("D, M Y");
+            $transaction->formatted_date = $transaction->created_at->format("D, d M Y");
             return $transaction;
         });
 
@@ -74,6 +78,7 @@ class TransactionController extends Controller
 
     public function createTransaction(Request $request)
     {
+        $user = Auth::user();
         if (request("mode") == "search") {
             // dd($request->input("type"));
             return redirect()
@@ -120,11 +125,13 @@ class TransactionController extends Controller
             }
         }
 
+        
+
         $transaction = Transaction::create([
             'recipient_name' => $validated['recipient_name'],
             'recipient_address' => $validated['recipient_address'],
             'status' => 'pending',
-            'user_id' => 1,
+            'user_id' => $user->id,
         ]);
 
         foreach ($items as $productCode => $qty) {
