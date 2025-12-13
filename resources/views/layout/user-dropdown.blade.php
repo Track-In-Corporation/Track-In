@@ -6,9 +6,9 @@
                group-data-[navbar-state=closed]:hover:opacity-75
                animate-cta p-1 rounded-lg"
          data-profile-popup-trigger>
+
          <img class="rounded-full md:w-8 max-w-10 max-h-10 w-full min-w-9 transition-all aspect-square border-white border"
-             src="{{ Auth::user()->profile_picture_path ?? 'https://static.vecteezy.com/system/resources/thumbnails/022/014/184/small/user-icon-member-login-isolated-vector.jpg' }}"
-             alt="User Avatar">
+             src="{{ Auth::user()->profile_picture_path ? Auth::user()->profile_picture_path : 'https://static.vecteezy.com/system/resources/thumbnails/022/014/184/small/user-icon-member-login-isolated-vector.jpg' }}">
 
          <div class="group-data-[navbar-state=closed]:opacity-0 transition duration-100 md:hidden">
              <p class="text-sm text-primary">{{ Auth::user()->name }}</p>
@@ -23,11 +23,11 @@
                     group-data-[state=open]:translate-y-0 group-data-[state=open]:scale-100
         z-9999 p-1  "
          data-profile-popup-content>
-         <div class="px-4 py-1 pb-3 border-b">
+         <div class="px-4 py-1 pb-3 border-b hidden md:flex">
              <div class="text-base text-primary mb-.5">{{ Auth::user()->name }}</div>
              <p class="text-sm text-secondary">{{ Auth::user()->email }}</p>
          </div>
-         <div class="py-2 px-2 border-b">
+         <div class="py-2 px-2 border-b hidden md:block">
              <x-language-switcher></x-language-switcher>
          </div>
          <form method="POST" action="/logout" class="p-1">

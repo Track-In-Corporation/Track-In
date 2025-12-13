@@ -72,7 +72,8 @@ class User extends Authenticatable
     protected function profilePicturePath(): Attribute {
         return Attribute::make(
             get: function ($value) {
-                if (str_contains($value, 'picsum')) return $value;
+                if ($value == null) return;
+                if (str_contains($value, 'http')) return $value;
                 return asset('storage/' . $value);
             }
         );
