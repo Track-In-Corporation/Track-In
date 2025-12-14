@@ -6,7 +6,7 @@
         <div
             class="bg-black/50 rounded-full absolute z-10 inset-0 group-hover/profile:opacity-50 backdrop-blur-lg animate-cta opacity-0 flex items-center justify-center">
         </div>
-        <img src={{ $user->profile_picture_path }} alt="user profile picture"
-            class="h-full w-full rounded-full object-cover" />
+        <img @if ($user->profile_picture_path) src={{ $user->profile_picture_path }} @endif
+            class="h-full w-full rounded-full object-cover bg-border" />
     </div>
 </div>

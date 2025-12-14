@@ -125,7 +125,7 @@ class TransactionController extends Controller
             }
         }
 
-        
+
 
         $transaction = Transaction::create([
             'recipient_name' => $validated['recipient_name'],
@@ -157,7 +157,7 @@ class TransactionController extends Controller
         $transaction = Transaction::find($id);
 
         if (!$transaction) {
-            return $this->error("The tarnsaction with the id $id, does not exist", 404);
+            return $this->error("The transaction with the id $id, does not exist", 404);
         }
 
         // if ($transaction->status !== 'pending') {
@@ -305,5 +305,15 @@ class TransactionController extends Controller
     public function deleteTransaction($id) {
         Transaction::findOrFail($id)->delete();
         return back();
+    }
+
+    public function updateTransactionStatus(Request $request, $id) {
+        $validated = $request->validate([
+            "status" => "required|string|in:pending,on-delivery,waiting-payment,completed"
+        ]);
+        Transaction::findOrFail($id)->update([
+            "status" => $validated["status"]
+        ]);
+        return redirect()->route("transactions", request()->query());
     }
 }

@@ -5,20 +5,20 @@
 @php
     $variants = [
         'pending' => [
-            'display' => 'Pending',
+            'display' => __('messages.transaction-status.pending'),
             'styles' => 'bg-[#F8F8F8] text-secondary',
         ],
         'on-delivery' => [
-            'display' => 'Pengiriman',
+            'display' => __('messages.transaction-status.on-delivery'),
             'styles' => 'text-[#3034FE] bg-[#F2F2FF]',
         ],
         'waiting-payment' => [
-            'display' => 'Selesai',
-            'styles' => 'bg-[#EEFDFA] text-[#38A897]',
+            'display' => __('messages.transaction-status.waiting-payment'),
+            'styles' => 'bg-[#FFF1F4] text-[#DD4C76]',
         ],
         'completed' => [
-            'display' => 'Pembayaran',
-            'styles' => 'bg-[#FFF1F4] text-[#DD4C76]',
+            'display' => __('messages.transaction-status.completed'),
+            'styles' => 'bg-[#EEFDFA] text-[#38A897]',
         ],
     ];
     $selectedVariant = $variants[$variant];

@@ -9,7 +9,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['recipient_name', 'recipient_address', 'user_id'];
+    protected $fillable = ['recipient_name', 'recipient_address', 'user_id', 'status'];
 
     // Handles multi column search
     private $SEARCH_COLUMNS = ["id", "recipient_name", "status"];

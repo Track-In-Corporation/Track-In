@@ -25,7 +25,7 @@ class AuthController extends Controller
 
       $request->validate([
           'fullName' => 'required|min:3|max:40',
-          'email' => ['required', 'unique:users'],
+          'email' => ['required', 'unique:users,email', 'email'],
           'pass' => 'required|min:6|max:12',
       ], [
           'fullName.required' => 'Please enter your full name!',
@@ -48,7 +48,7 @@ class AuthController extends Controller
       return redirect('/inventory')->with('success', 'Registration successful and you are logged in.');
     }
 
-     function login(Request $request){
+    function login(Request $request){
       $request->validate([
           'email' => 'required',
           'pass' => 'required|min:6|max:12',
@@ -65,7 +65,7 @@ class AuthController extends Controller
             return redirect()->intended('/inventory')->with('success', 'Logged in successfully.');
         }
 
-        return back()->withErrors(['passs' => 'Email or password is incorrect.']);
+        return back()->withErrors(['pass' => 'Email or password is incorrect.']);
     }
 
     function logout(){

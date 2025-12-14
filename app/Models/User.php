@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'profile_picture_path',
         'created_at',
+        'phone',
         'role',
     ];
 

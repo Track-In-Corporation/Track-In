@@ -33,8 +33,8 @@
 
             <button type="submit"
                 class="bg-accent mt-6 w-full rounded-xl text-white py-4 animate-cta">{{ __('messages.login.input.submit') }}</button>
-            <p class="text-secondary my-8 text-center">{{ __('messages.login.input.has_acc') }} <a href="/register"><span
-                        class="text-accent underline">{{ __('messages.login.input.login') }}</span></a></p>
+            {{-- <p class="text-secondary my-8 text-center">{{ __('messages.login.input.has_acc') }} <a href="/register"><span
+                        class="text-accent underline">{{ __('messages.login.input.login') }}</span></a></p> --}}
         </form>
 
         <p class="text-sm text-center text-tertiary mb-2">{{ __('messages.login.footer') }}</p>

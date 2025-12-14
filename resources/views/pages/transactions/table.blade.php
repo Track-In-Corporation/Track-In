@@ -14,13 +14,24 @@
 
 <div class="flex-1 relative">
     <div class="absolute inset-0  overflow-auto">
-        <div class="relative">
+        <div class="relative flex flex-col h-full">
             <div class="grid [&>div]:border-y [&>div]:border-r [&>div]:px-4 [&>div]:py-3 [&>div]:bg-input-background sticky top-0 left-0 right-0"
                 style="grid-template-columns: {{ $gridColumnSizes }};">
                 @foreach ($items as $item)
                     <div class="text-sm">{!! $item['key'] !!}</div>
                 @endforeach
             </div>
+            @if (count($transactions) == 0)
+                <div class="flex p-4 flex-1 h-full flex-col items-center justify-center">
+                    <div
+                        class="flex w-full h-full rounded-md flex-col items-center justify-center border-2 border-dashed">
+                        <iconify-icon icon="material-symbols:error-outline"
+                            class="text-[5rem] mb-4 text-secondary"></iconify-icon>
+                        <p class="text-2xl font-medium">Transaksi Tidak Ditemukan</p>
+                        <p class="text-secondary mt-1">Sepertinya tidak ada transaksi yang dapat ditampilkan</p>
+                    </div>
+                </div>
+            @endif
             @foreach ($transactions as $transaction)
                 <div data-window-trigger="{{ $transaction->id }}"
                     class="grid [&>div]:text-sm [&>div]:px-4 [&>div]:py-3 [&>div]:border-b hover:bg-secondary/5 animate-cta"

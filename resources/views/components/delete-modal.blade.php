@@ -1,5 +1,5 @@
 <div data-delete-modal data-state="closed"
-    class="data-[state=open]:visible data-[state=open]:opacity-100 opacity-0 group invisible fixed inset-0 bg-black/40 justify-center transition-all duration-200 items-center z-100 flex min-h-screen">
+    class="data-[state=open]:visible data-[state=open]:opacity-100 opacity-0 group invisible fixed inset-0 bg-black/40 justify-center transition-all duration-200 items-center z-9999 flex min-h-screen ">
     <div class=" bg-[#F9FAFD] p-3 min-w-[600px] rounded-xl max-md:min-w-[250px] group-data-[state=open]:scale-100 group-data-[state=open]:-translate-y-3 scale-95 translate-y-0 transition-all duration-200"
         data-delete-modal-content>
         <div class="bg-white shadow-[0_0_12px_0_rgba(0,0,0,0.1)] border p-3 rounded-xl h-full">

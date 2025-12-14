@@ -10,23 +10,28 @@
     'type' => null,
 ])
 
-<div {{ $attributes->merge(['class' => 'w-full']) }}>
+<div {{ $attributes->merge(['class' => 'w-full']) }}
+    @if ($type == 'password') data-password-input data-state="show" @endif>
     @if ($label)
         <label class="pb-2 text-primary text-sm font-normal block">
             {{ $label }}
         </label>
     @endif
 
-    <div data-state class="shadow-soft">
+    <div data-state class="shadow-soft relative">
         <input @class([
             'border border-border bg-highlight rounded-sm w-full px-5 py-4 text-primary disabled:text-slate-500 transition duration-75 placeholder:text-paragraph text-sm focus:ring-accent focus:ring-2 outline-none disabled:cursor-not-allowed placeholder:font-normal font-normal bg-input-background data-[state=error]:border-red-500',
             'border-red-400' => $error,
             $inputClass,
-        ]) placeholder="{{ $placeholder }}"
-            @if ($type) type="{{ $type }}" @endif
+        ]) @if ($type == 'password') data-input @endif
+            placeholder="{{ $placeholder }}" @if ($type) type="{{ $type }}" @endif
             @if ($name) name="{{ $name }}" @endif
             @if ($value) value="{{ $value }}" @endif
             @if ($numeric) inputmode="numeric" @endif>
+        @if ($type == 'password')
+            <iconify-icon icon="oui:eye-closed" data-icon
+                class="absolute text-lg right-6 top-1/2 -translate-y-1/2"></iconify-icon>
+        @endif
     </div>
 
     @if (!$error && $hint)

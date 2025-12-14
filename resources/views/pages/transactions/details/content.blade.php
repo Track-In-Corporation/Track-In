@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between gap-4 border-b pb-4 mt-5">
         <div class="flex gap-4 items-center">
             <div class="text-xl">{{ $transaction->code }}</div>
-            <x-status-badge variant="{{ $transaction->status }}"></x-status-badge>
+            @include('pages.transactions.details.status-dropdown')
         </div>
         <div class="flex items-center gap-3">
             @if ($transaction->status === 'pending')

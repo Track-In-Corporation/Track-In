@@ -16,7 +16,7 @@
 
 <div class="mt-4 flex-1 relative">
     <div class="absolute inset-0 overflow-auto">
-        <div class="relative">
+        <div class="relative flex flex-col h-full">
 
             <div class="grid [&>div]:border-y [&>div]:border-r [&>div]:px-4 [&>div]:py-3 bg-input-background sticky top-0 left-0 right-0 [&>div]:bg-input-background"
                 style="grid-template-columns: {{ $gridColumnSizes }};">
@@ -24,6 +24,17 @@
                     <div class="text-sm">{!! $item['key'] !!}</div>
                 @endforeach
             </div>
+            @if (count($products) == 0)
+                <div class="flex p-4 flex-1 h-full flex-col items-center justify-center">
+                    <div
+                        class="flex w-full h-full rounded-md flex-col items-center justify-center border-2 border-dashed">
+                        <iconify-icon icon="material-symbols:error-outline"
+                            class="text-[5rem] mb-4 text-secondary"></iconify-icon>
+                        <p class="text-2xl font-medium">Barang Tidak Ditemukan</p>
+                        <p class="text-secondary mt-1">Sepertinya tidak ada barang yang dapat ditampilkan</p>
+                    </div>
+                </div>
+            @endif
             @foreach ($products as $product)
                 <div data-window-trigger="{{ $product->code }}"
                     class="grid [&>div]:text-sm [&>div]:px-4 [&>div]:py-4 [&>div]:border-b group hover:[&>div]:bg-secondary/5 animate-cta [&>div]:bg-white cursor-pointer"

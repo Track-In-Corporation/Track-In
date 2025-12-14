@@ -7,7 +7,9 @@
     </div>
     <div class="pb-6 border-b">
         <x-input label="{{ __('messages.user.edit.information.phone') }}" placeholder="032432984"
-            inputClass="rounded-lg! py-3.5!" class="mt-0.5" name="phone" :value="old('phone')" :error="$errors->first('phone')" />
+            inputClass="rounded-lg! py-3.5!" class="mt-0.5 mb-6" name="phone" :value="old('phone')" :error="$errors->first('phone')" />
+        <x-input label="{{ __('messages.user.edit.information.password') }}" placeholder="******"
+            inputClass="rounded-lg! py-3.5!" class="mt-0.5" name="password" :value="old('password')" :error="$errors->first('password')" />
     </div>
     <div class="mt-6">
         <x-role-selector value="user"></x-role-selector>

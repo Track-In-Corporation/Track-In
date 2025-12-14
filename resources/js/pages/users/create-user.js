@@ -65,7 +65,6 @@ const handleCreateUser = async (e) => {
         window.location.reload();
     } catch (err) {
         const errors = err.data.errors;
-        console.log(JSON.stringify(err));
         Object.entries(errors).forEach(([name, [message]]) => {
             const inputEl = Array.from(inputs).find((i) => i.name === name);
             const errorHTML = errorTemplate(message);
