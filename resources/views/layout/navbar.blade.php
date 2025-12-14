@@ -21,9 +21,10 @@
 <nav
     class="px-2 navbar relative flex flex-col md:fixed md:bottom-0 md:left-0 md:right-0 md:border-t md:bg-white md:z-100">
     <div class="pt-4 pb-1 md:hidden">
-        <div class="flex items-center overflow-hidden rounded-md gap-0 ">
-            <iconify-icon icon="mingcute:box-line" class="text-2xl p-1.5"></iconify-icon>
-            <h2 class="truncate group-data-[navbar-state=closed]:opacity-0 transition duration-100">TRACK IN</h2>
+        <div class="flex items-center overflow-hidden rounded-md gap-2 ">
+            <img src={{ asset('images/logoTrackIn.png') }} alt="" class="w-10 scale-90">
+            {{-- <iconify-icon icon="mingcute:box-line" class="text-2xl p-1.5"></iconify-icon> --}}
+            <h2 class="truncate group-data-[navbar-state=closed]:opacity-0 text-lg transition duration-100">Track-In</h2>
         </div>
     </div>
     <div class="w-full h-px bg-border relative md:hidden">
