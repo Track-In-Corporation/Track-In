@@ -178,7 +178,7 @@ return [
 
         'create' => [
             'title' => 'Create User',
-            'desc' => 'Input data to add new user.',
+            'desc' => 'Enter the required information to add a new user.',
             'submit' => 'Create User'
           ],
 
@@ -257,4 +257,30 @@ return [
         'chosen' => 'Chosen'
     ],
 
+    // status-dropdown =>
+    'status-dropdown' => [
+        'title' => "Change Status",
+        'pending' => [
+            'title' => 'Pending',
+            'description' => 'Item has been added and not processed yet.',
+        ],
+        'on-delivery' => [
+            'title' => 'On Delivery',
+            'description' => 'Item is being delivered.',
+        ],
+        'waiting-payment' => [
+            'title' => 'Waiting for Payment',
+            'description' => 'Payment has not been received.',
+        ],
+        'completed' => [
+            'title' => 'Completed',
+            'description' => 'Transaction has been completed.',
+        ],
+    ],
+    'transaction-status' => [
+        'pending' => "Pending",
+        'on-delivery' => 'On Delivery',
+        'waiting-payment' => "Payment",
+        'completed' => "Completed"
+    ]
 ];

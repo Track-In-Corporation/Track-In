@@ -1,23 +1,23 @@
 @php
     $items = [
         'pending' => [
-            'title' => 'Pending',
-            'description' => 'Barang baru ditambahkan dan belum diproses.',
+            'title' => __('messages.status-dropdown.pending.title'),
+            'description' => __('messages.status-dropdown.pending.description'),
             'styles' => 'text-primary',
         ],
         'on-delivery' => [
-            'title' => 'Dalam Pengiriman',
-            'description' => 'Barang sedang dikirim.',
+            'title' => __('messages.status-dropdown.on-delivery.title'),
+            'description' => __('messages.status-dropdown.on-delivery.description'),
             'styles' => 'text-[#3034FE]',
         ],
         'waiting-payment' => [
-            'title' => 'Menunggu Pembayaran',
-            'description' => 'Pembayaran belum diterima.',
+            'title' => __('messages.status-dropdown.waiting-payment.title'),
+            'description' => __('messages.status-dropdown.waiting-payment.description'),
             'styles' => 'text-[#DD4C76]',
         ],
         'completed' => [
-            'title' => 'Selesai',
-            'description' => 'Transaksi telah selesai.',
+            'title' => __('messages.status-dropdown.completed.title'),
+            'description' => __('messages.status-dropdown.completed.description'),
             'styles' => 'text-[#38A897]',
         ],
     ];
@@ -31,7 +31,7 @@
     <div data-content
         class="bg-white border w-96 rounded-md shadow-soft absolute left-0 right-0 top-8 z-50 group-data-[state=open]:opacity-100 group-data-[state=open]:scale-100 group-data-[state=open]:visible group-data-[state=open]:translate-y-0 opacity-0 scale-98 invisible -translate-y-2 transition-all duration-200">
         <div class="py-2 px-4 border-b text-sm">
-            Change Status
+            {{ __('messages.status-dropdown.title') }}
         </div>
         <form class="p-1" method="POST" action={{ route('transaction-status-edit', $transaction->id) }}>
             @csrf

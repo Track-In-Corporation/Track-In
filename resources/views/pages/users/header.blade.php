@@ -4,6 +4,7 @@
     <div class=" py-4 flex gap-3 justify-between md:px-4 md:flex-col md:pb-4 md:mb-1 border-t">
         <div class="flex gap-6 h-full md:pb-4 md:mb-1 md:border-b">
             <x-search-bar route="{{ route('users') }}" class="w-full"></x-search-bar>
+            <div class="w-px bg-border md:hidden"></div>
             @include('pages.users.filter')
         </div>
         <button data-create-user-button

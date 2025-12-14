@@ -241,4 +241,30 @@ return [
         'total' => 'Total',
         'chosen' => 'Terpilih'
     ],
+
+    'status-dropdown' => [
+        'title' => "Ubah Status",
+        'pending' => [
+            'title' => 'Pending',
+            'description' => 'Barang baru ditambahkan dan belum diproses.',
+        ],
+        'on-delivery' => [
+            'title' => 'Dalam Pengiriman',
+            'description' => 'Barang sedang dikirim.',
+        ],
+        'waiting-payment' => [
+            'title' => 'Menunggu Pembayaran',
+            'description' => 'Pembayaran belum diterima.',
+        ],
+        'completed' => [
+            'title' => 'Selesai',
+            'description' => 'Transaksi telah selesai.',
+        ],
+    ],
+    'transaction-status' => [
+        'pending' => "Pending",
+        'on-delivery' => 'Pengiriman',
+        'waiting-payment' => "Pembayaran",
+        'completed' => "Selesai"
+    ]
 ];
