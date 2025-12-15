@@ -1,12 +1,12 @@
 window.addEventListener(
     "click",
-    () => {
+    (e) => {
         const passwordEyeIcon = e.target.closest("[data-icon]");
 
-        passwordEyeIcon.addEventListener("click", (e) => {
+        if (passwordEyeIcon) {
             const passwordInput = e.target.closest("[data-password-input]");
             if (passwordInput) handleToggleVisibility(e);
-        });
+        }
 
         const STATE = {
             OPEN: "oui:eye",

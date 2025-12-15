@@ -12,14 +12,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'getLogin']);
 
 Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
-// Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
 Route::post('/login', [AuthController::class, 'login'])->name('login.user');
 Route::post('/register', [AuthController::class, 'register'])->name('create.user');
 Route::post('/logout', [AuthController::class, 'logout'])->name("logout");
 
 
 // API Routes
-Route::prefix("api")->group(function() {
+Route::prefix("api")->middleware([isLoggedIn::class])->group(function() {
   Route::get('/products/{code}', [ProductController::class, 'getProduct']);
   Route::get('/transactions/{id}', [TransactionController::class, 'getTransaction']);
     Route::get('/users/{id}', [UserController::class, 'getUser']);

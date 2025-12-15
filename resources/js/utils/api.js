@@ -29,6 +29,7 @@ export class API {
         const res = await fetch(this.API_URL + url, {
             headers: this.getHeaders(),
             method: "GET",
+            credentials: "include",
             ...opts,
         });
 
@@ -44,6 +45,7 @@ export class API {
             headers,
             method: "POST",
             body: body instanceof FormData ? body : JSON.stringify(body),
+            credentials: "include",
             ...opts,
         });
 
@@ -58,6 +60,7 @@ export class API {
             headers: this.getHeaders(body instanceof FormData),
             method: "PUT",
             body: body instanceof FormData ? body : JSON.stringify(body),
+            credentials: "include",
             ...opts,
         });
 
@@ -71,6 +74,7 @@ export class API {
         const res = await fetch(this.API_URL + url, {
             headers: this.getHeaders(),
             method: "DELETE",
+            credentials: "include",
             ...opts,
         });
 

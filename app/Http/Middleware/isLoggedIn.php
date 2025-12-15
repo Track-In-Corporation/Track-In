@@ -16,7 +16,12 @@ class isLoggedIn
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user()){
+        if(!Auth::check()) {
+
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(['message' => 'Unauthorized.'], 401);
+            }
+
             return redirect('/login')->with('error', 'You must be logged in to access that page.');
         }
         return $next($request);
