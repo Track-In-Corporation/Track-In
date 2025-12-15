@@ -8,6 +8,7 @@ use App\Models\TransactionItem;
 use App\Traits\APIResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
@@ -303,7 +304,30 @@ class TransactionController extends Controller
 
 
     public function deleteTransaction($id) {
-        Transaction::findOrFail($id)->delete();
+        $transaction = Transaction::findOrFail($id);
+         // Tambah stock kalau gak comp[leted transasction]
+        if ($transaction->status !== 'completed' || $transaction->status !== 'on-delivery') {
+
+            $items = $transaction->items; // uses hasMany relationship
+
+            foreach ($items as $item) {
+
+                $product = Product::where('code', $item->product_code)->first();
+
+                if ($product) {
+                    $product->increment('quantity', $item->quantity);
+
+                    // Log::debug('Stock restored', [
+                    //     'product_code' => $item->product_code,
+                    //     'qty' => $item->quantity,
+                    // ]);
+                }
+            }
+        }
+
+        // delete transaction (transaction_items will cascade)
+        $transaction->delete();
+
         return back();
     }
 

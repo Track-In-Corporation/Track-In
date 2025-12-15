@@ -22,14 +22,16 @@ window.addEventListener(
             return;
         }
 
+        if (acceptBtn) {
+            e.preventDefault();
+            // e.stopImmediatePropagation();
+            modalDeleteForm.submit();
+        }
+
         if (!modalContent || declineBtn) {
             confirmationModal.dataset.state = "closed";
             confirmationModal.dataset.context = "";
             return;
-        }
-
-        if (acceptBtn) {
-            modalDeleteForm.submit();
         }
     },
     true
