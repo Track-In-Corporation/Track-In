@@ -286,8 +286,8 @@ return [
     ],
 
     'error_message' => [
-        'transaksi_not_found' => "Transaction Not Found",
-        'transaksi_not_found_desc' => "There is no transaction found",
+        'transaction_not_found' => "Transaction Not Found",
+        'transaction_not_found_desc' => "There is no transaction found",
 
         'product_not_found' => "Product Not Found",
         'product_not_found_desc' => "There is no product found",
