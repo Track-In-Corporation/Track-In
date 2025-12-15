@@ -277,10 +277,22 @@ return [
             'description' => 'Transaction has been completed.',
         ],
     ],
+
     'transaction-status' => [
         'pending' => "Pending",
         'on-delivery' => 'On Delivery',
         'waiting-payment' => "Payment",
         'completed' => "Completed"
+    ],
+
+    'error_message' => [
+        'transaksi_not_found' => "Transaction Not Found",
+        'transaksi_not_found_desc' => "There is no transaction found",
+
+        'product_not_found' => "Product Not Found",
+        'product_not_found_desc' => "There is no product found",
+
+        'user_not_found' => "User Not Found",
+        'user_not_found_desc' => "There is no user found",
     ]
 ];

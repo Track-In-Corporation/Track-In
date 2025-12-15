@@ -30,7 +30,7 @@
             @if ($numeric) inputmode="numeric" @endif>
         @if ($type == 'password')
             <iconify-icon icon="oui:eye-closed" data-icon
-                class="absolute text-lg right-6 top-1/2 -translate-y-1/2"></iconify-icon>
+                class="absolute text-lg right-6 top-1/2 -translate-y-1/2 password_eye_icon"></iconify-icon>
         @endif
     </div>
 

@@ -266,5 +266,16 @@ return [
         'on-delivery' => 'Pengiriman',
         'waiting-payment' => "Pembayaran",
         'completed' => "Selesai"
+    ],
+
+    'error_message' => [
+        'transaction_not_found' => "Transaksi Tidak Ditemukan",
+        'transaction_not_found_desc' => "Tidak ada transaksi yang ditemukan",
+
+        'product_not_found' => "Produk Tidak Ditemukan",
+        'product_not_found_desc' => "Tidak ada produk yang ditemukan",
+
+        'user_not_found' => "User Tidak Ditemukan",
+        'user_not_found_desc' => "Tidak ada pengguna yang ditemukan",
     ]
 ];

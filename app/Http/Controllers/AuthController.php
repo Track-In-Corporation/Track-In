@@ -50,17 +50,17 @@ class AuthController extends Controller
 
     function login(Request $request){
       $request->validate([
-          'email' => 'required',
+          'email' => ['required', 'email'],
           'pass' => 'required|min:6|max:12',
       ], [
           'email.required' => 'Please enter your email!',
           'pass.required' => 'Please enter your password!',
       ]);
 
-        $remember = $request->has('rememberMe'); 
+        $remember = $request->has('rememberMe');
         $credentials = ['email' => $request->email, 'password' => $request->pass];
 
-        if (Auth::attempt($credentials, $remember)) { 
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended('/inventory')->with('success', 'Logged in successfully.');
         }
@@ -72,6 +72,6 @@ class AuthController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/login')->with('success', 'You have logged out successfully.'); 
+        return redirect('/login')->with('success', 'You have logged out successfully.');
     }
 }
