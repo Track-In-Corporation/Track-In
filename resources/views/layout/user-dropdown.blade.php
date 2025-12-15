@@ -23,7 +23,7 @@
                     group-data-[state=open]:translate-y-0 group-data-[state=open]:scale-100
         z-9999 p-1  "
          data-profile-popup-content>
-         <div class="px-4 py-1 pb-3 border-b hidden md:flex">
+         <div class="px-4 py-1 pb-3 border-b md:flex flex-col">
              <div class="text-base text-primary mb-.5">{{ Auth::user()->name }}</div>
              <p class="text-sm text-secondary">{{ Auth::user()->email }}</p>
          </div>
@@ -33,7 +33,7 @@
          <form method="POST" action="/logout" class="p-1">
              @csrf
              <button type="submit"
-                 class="w-full px-3 py-2 text-sm text-left flex items-center gap-2 animate-cta hover:bg-input-background rounded-md">
+                 class="w-full px-2 py-1.5 text-sm text-left flex items-center gap-2  animate-cta hover:bg-input-background rounded-md">
                  <iconify-icon icon="material-symbols:logout-rounded" class="text-lg"></iconify-icon>
                  Log Out
              </button>
