@@ -25,8 +25,8 @@
                         class="flex w-full h-full rounded-md flex-col items-center justify-center border-2 border-dashed">
                         <iconify-icon icon="material-symbols:error-outline"
                             class="text-[5rem] mb-4 text-secondary"></iconify-icon>
-                        <p class="text-2xl font-medium">User Tidak Ditemukan</p>
-                        <p class="text-secondary mt-1">Sepertinya tidak ada user yang dapat ditampilkan</p>
+                        <p class="text-2xl font-medium">{{ __('messages.error_message.user_not_found') }}</p>
+                        <p class="text-secondary mt-1">{{ __('messages.error_message.user_not_found_desc') }}</p>
                     </div>
                 </div>
             @endif
